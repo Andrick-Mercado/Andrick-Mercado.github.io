@@ -6,7 +6,7 @@
 -->
 <html>
 <head>
-    <title>SpaceCraft</title>
+    <title>Traversial</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="../assets/css/main.css"/>
@@ -24,7 +24,7 @@
         <nav id="nav">
             <ul>
                 <li><a href="../index">About Me</a></li>
-                <li class="current"><a href="../myprojects">My Projects</a></li>
+                <li class="current"><a href="../myprojectsfolder">My Projects</a></li>
                 <li><a href="../myexperience&education">My Experience & Education</a></li>
                 <li><a href="../resume">Resume</a></li>
             </ul>
@@ -40,14 +40,15 @@
 
                     <!-- Content -->
                     <article class="box post">
-                        <a class="image featured"><img src="../images/SpaceCraft_background.jpg" alt=""/></a>
+                        <a class="image featured"><img src="../images/Traversial_background.jpg" alt=""/></a>
                         <header>
-                            <h2>SpaceCraft <a class="icon brands fa-windows"><span class="label">Windows</span></a></h2>
-                            <p>Posted May 2022</p>
+                            <h2>Traversial <a class="icon brands fa-windows"><span class="label">Windows</span></a>
+                                <a class="icon brands fa-itch-io"><span class="label">ItchIO</span></a></h2>
+                            <p>Posted July 2022</p>
                         </header>
                         <p>
-                            SpaceCraft is a 3rd perspective multiplayer quest open world game. Where they key objectives
-                            are exploring new planets while doing quests.
+                            Escape with your life if you can, Traversial is a game where you need to escape a space
+                            prison where some monsters are guarding the exits.
                         </p>
                         <section>
 
@@ -56,11 +57,14 @@
                             </header>
 
                             <p>
-                                In this project me and 3 other of my classmates worked on a 3D game, where the core
-                                mechanics we wanted to implement in the game were multiplayer, saving through the use of
-                                databases, as well as user authentication, all whiting a 3D open-world game. Some
-                                features were taken out as they were simply too much for the user experience, systems
-                                that were taken out were databases and user authentication.
+                                This game was made for a game jam called <a href="http://bit.ly/3hRWR7D"
+                                                                            target="_blank">AGL Summer Game Jam 2022</a>,
+                                part of the SDSU
+                                Aztec Game Lab club, all the parts of the game were made by me, with the only
+                                exception being the artwork, this game is a short 3rd perspective stealth game, where
+                                the goal is to escape out of this complex space building you are trapped in. Some
+                                important systems used for the making of this game are the enemy AI, and player
+                                controller.
                             </p>
 
 
@@ -69,7 +73,7 @@
                         <section>
                             <header>
                                 <ul class="links">
-                                    <li><a class="image"><img src="../gifs/spacecraft_world_generation.gif" alt=""/></a>
+                                    <li><a class="image"><img src="../gifs/traversial_gameplay.gif" alt=""/></a>
                                     </li>
                                 </ul>
                             </header>
@@ -82,59 +86,45 @@
                                 challenging.
                             </p>
                             <header>
-                                <h1>Multiplayer System</h1>
+                                <h1>Enemy AI</h1>
                             </header>
                             <p>
-                                When it came to deciding on how to move on with multiplayer, we chose to use Photon
-                                engine to facilitate the process. When it came to connecting all players to lobbies, we
-                                decided to go with room creation and joining, thus the player can join any open room on
-                                the room list menu, once a player joins all the procedurally generated items are loaded
-                                the same based on seeds, this includes the interactable items. The inventory is also
-                                shared for all players, as well as when they join. Once an item has collected a photon
-                                PunRPC is called to sync everyone's interactable in the current room, this is the same
-                                for quests and inventory of the player.
+                                For the making of this game, the enemy AI had to be well done, to produce better
+                                gameplay for the player, and thus I decided to use a behavioral tree with 3 states,
+                                patrolling between waypoints, hearing sound essentially when the enemy hears a player,
+                                specifically the footsteps made when a player runs and or lands when jumping, lastly is
+                                the attack state, which is just based on line of side and if the player is close enough,
+                                as well as being synchronized with the animation. Below are some gifs demonstrating the
+                                enemy AI in action, hearing, visual states, and attack states.
                             </p>
                             <header>
                                 <ul class="links">
-                                    <li><a class="image"><img src="../gifs/spacecraft_multiplayer.gif" alt=""/></a></li>
+                                    <li><a class="image"><img src="../gifs/traversial_enemy_ai.gif" alt=""/></a></li>
+                                    <li><a class="image"><img src="../gifs/traversial_enemy_ai_alt.gif" alt=""/></a>
+                                    </li>
+                                    <li><a class="image"><img src="../gifs/traversial_enemy_ai_alt_02.gif" alt=""/></a>
+                                    </li>
                                 </ul>
                             </header>
 
                             <header>
-                                <h1>Interaction & Inventory System</h1>
+                                <h1>Player Controller</h1>
                             </header>
                             <p>
-                                For the interaction system, it shoots a raycast with a given range and a layer mask and
-                                attempts to find any objects or interactable that are in the intractable layers, and
-                                once it finds an object with such layer, it activates its panel and displays the
-                                information about the object, here the objects are versatile as they are made using
-                                scriptable objects, which allows us to make many more intractable objects, with
-                                customizable settings such as time to interact and obvious what it is. Once an
-                                interactable object is collected using the selected collection key, the object calls
-                                destroy as well as updating the quest system while using the PunRPC attribute. For the
-                                inventory system I implemented using a stack-like algorithm, essentially added inventory
-                                items and stacked them if there was already one in the inventory, and expanded
-                                accordingly to the number of items, all items in this game were minerals, flint, and
-                                trees.
+                                The player controller was a core system for this game, as it handles all the player's
+                                experience when playing, the controller for this game is a 3d one, and allows the player
+                                to get a better view of the map, as well as the enemies. With this controller the player
+                                can jump, stealth walk and run, where jumping and running create emitted sounds to the
+                                enemy AI, and thus the player is penalized if they decide to run and or when they jump
+                                specifically sound is emitted when they land. Hence, why the player has to think before
+                                attempting to speed-run the levels.
                             </p>
                             <header>
                                 <ul class="links">
-                                    <li><a class="image"><img src="../gifs/spacecraft_interaction.gif" alt=""/></a></li>
-                                </ul>
-                            </header>
-
-                            <header>
-                                <h1>Quest System</h1>
-                            </header>
-                            <p>
-                                The quest system is simple but effective, as we didn't necessarily implement a vast
-                                amount of quests, but the system can still be expanded to other quests even bosses,
-                                although we didn't implement this feature it was in our wishlist for this game. There
-                                was also a way for the player to see the active quest and know when they finished it.
-                            </p>
-                            <header>
-                                <ul class="links">
-                                    <li><a class="image"><img src="../gifs/spacecraft_quests.gif" alt=""/></a></li>
+                                    <li><a class="image"><img src="../gifs/traversial_player_controller.gif"
+                                                              alt=""/></a></li>
+                                    <li><a class="image"><img src="../gifs/traversial_anim.gif"
+                                                              alt=""/></a></li>
                                 </ul>
                             </header>
 
@@ -148,8 +138,24 @@
                                 <li><a href="https://github.com/Andrick-Mercado/SpaceCraft" target="_blank"
                                        class="icon brands fa-github"><span class="label">Github</span></a>
                                 </li>
+                                <li><a href="https://bit.ly/3F1PLoe" target="_blank"
+                                       class="icon brands fa-itch-io"><span class="label">ItchIO</span></a>
+                                </li>
                             </ul>
                         </section>
+                        <!-- Content -->
+                        <article class="box post">
+                            <header>
+                                <h2>Traversial on Your Browser</h2>
+                                <p>Traversial (re-scale your window to fit the game)</p>
+                            </header>
+
+                            <iframe frameborder="0" src="https://itch.io/embed-upload/6670635?color=333333"
+                                    allowfullscreen=""
+                                    width="100%" height="620"><a href="https://andrick-mercado.itch.io/traversial">Play
+                                Traversial on
+                                itch.io</a></iframe>
+                        </article>
 
                     </article>
 
