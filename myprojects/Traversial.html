@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<!--
+	Dopetrope by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Traversial</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+</head>
+<body class="right-sidebar is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <section id="header">
+
+        <!-- Logo -->
+        <h1><a href="../index">Andrick Mercado Portfolio</a></h1>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="../index">About Me</a></li>
+                <li class="current"><a href="../myprojects">My Projects</a></li>
+                <li><a href="../myexperience&education">My Experience & Education</a></li>
+                <li><a href="../resume">Resume</a></li>
+            </ul>
+        </nav>
+
+    </section>
+
+    <!-- Main -->
+    <section id="main">
+        <div class="container">
+            <div class="box">
+                <div class="col-8 col-12-medium">
+
+                    <!-- Content -->
+                    <article class="box post">
+                        <a class="image featured"><img src="../images/Traversial_background.jpg" alt=""/></a>
+                        <header>
+                            <h2>Traversial <a class="icon brands fa-windows"><span class="label">Windows</span></a>
+                                <a class="icon brands fa-itch-io"><span class="label">ItchIO</span></a></h2>
+                            <p>Posted July 2022</p>
+                        </header>
+                        <p>
+                            Escape with your life if you can, Traversial is a game where you need to escape a space
+                            prison where some monsters are guarding the exits.
+                        </p>
+                        <section>
+
+                            <header>
+                                <h3>My Contribution</h3>
+                            </header>
+
+                            <p>
+                                This game was made for a game jam called <a href="http://bit.ly/3hRWR7D"
+                                                                            target="_blank">AGL Summer Game Jam 2022</a>,
+                                part of the SDSU
+                                Aztec Game Lab club, all the parts of the game were made by me, with the only
+                                exception being the artwork, this game is a short 3rd perspective stealth game, where
+                                the goal is to escape out of this complex space building you are trapped in. Some
+                                important systems used for the making of this game are the enemy AI, and player
+                                controller.
+                            </p>
+
+
+                        </section>
+
+                        <section>
+                            <header>
+                                <ul class="links">
+                                    <li><a class="image"><img src="../gifs/traversial_gameplay.gif" alt=""/></a>
+                                    </li>
+                                </ul>
+                            </header>
+                            <header>
+                                <h3>Systems Explored</h3>
+                            </header>
+                            <p>
+                                In this section I go over some of the systems I explored during the making of this game,
+                                I select the topics I found to be most interesting and that I found to be the most
+                                challenging.
+                            </p>
+                            <header>
+                                <h1>Enemy AI</h1>
+                            </header>
+                            <p>
+                                For the making of this game, the enemy AI had to be well done, to produce better
+                                gameplay for the player, and thus I decided to use a behavioral tree with 3 states,
+                                patrolling between waypoints, hearing sound essentially when the enemy hears a player,
+                                specifically the footsteps made when a player runs and or lands when jumping, lastly is
+                                the attack state, which is just based on line of side and if the player is close enough,
+                                as well as being synchronized with the animation. Below are some gifs demonstrating the
+                                enemy AI in action, hearing, visual states, and attack states.
+                            </p>
+                            <header>
+                                <ul class="links">
+                                    <li><a class="image"><img src="../gifs/traversial_enemy_ai.gif" alt=""/></a></li>
+                                    <li><a class="image"><img src="../gifs/traversial_enemy_ai_alt.gif" alt=""/></a>
+                                    </li>
+                                    <li><a class="image"><img src="../gifs/traversial_enemy_ai_alt_02.gif" alt=""/></a>
+                                    </li>
+                                </ul>
+                            </header>
+
+                            <header>
+                                <h1>Player Controller</h1>
+                            </header>
+                            <p>
+                                The player controller was a core system for this game, as it handles all the player's
+                                experience when playing, the controller for this game is a 3d one, and allows the player
+                                to get a better view of the map, as well as the enemies. With this controller the player
+                                can jump, stealth walk and run, where jumping and running create emitted sounds to the
+                                enemy AI, and thus the player is penalized if they decide to run and or when they jump
+                                specifically sound is emitted when they land. Hence, why the player has to think before
+                                attempting to speed-run the levels.
+                            </p>
+                            <header>
+                                <ul class="links">
+                                    <li><a class="image"><img src="../gifs/traversial_player_controller.gif"
+                                                              alt=""/></a></li>
+                                    <li><a class="image"><img src="../gifs/traversial_anim.gif"
+                                                              alt=""/></a></li>
+                                </ul>
+                            </header>
+
+                        </section>
+
+                        <section>
+                            <header>
+                                <h3>Links</h3>
+                            </header>
+                            <ul class="social">
+                                <li><a href="https://github.com/Andrick-Mercado/SpaceCraft" target="_blank"
+                                       class="icon brands fa-github"><span class="label">Github</span></a>
+                                </li>
+                                <li><a href="https://bit.ly/3F1PLoe" target="_blank"
+                                       class="icon brands fa-itch-io"><span class="label">ItchIO</span></a>
+                                </li>
+                            </ul>
+                        </section>
+                        <!-- Content -->
+                        <article class="box post">
+                            <header>
+                                <h2>Traversial on Your Browser</h2>
+                                <p>Traversial (re-scale your window to fit the game)</p>
+                            </header>
+
+                            <iframe frameborder="0" src="https://itch.io/embed-upload/6670635?color=333333"
+                                    allowfullscreen=""
+                                    width="100%" height="620"><a href="https://andrick-mercado.itch.io/traversial">Play
+                                Traversial on
+                                itch.io</a></iframe>
+                        </article>
+
+                    </article>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section id="footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-4 col-12-medium">
+                    <section>
+                        <header>
+                            <h2>Contact Me</h2>
+                        </header>
+                        <ul class="social">
+                            <li><a class="icon brands fa-linkedin-in"
+                                   href="https://www.linkedin.com/in/andrick-mercado/"
+                                   target="_blank"><span class="label">LinkedIn</span></a></li>
+                            <li><a class="icon brands fa-github" href="https://github.com/Andrick-Mercado/"
+                                   target="_blank"><span
+                                    class="label">Github</span></a></li>
+                            <li><a class="icon brands fa-itch-io" href="https://andrick-mercado.itch.io/"
+                                   target="_blank"><span class="label">ItchIo</span></a></li>
+                        </ul>
+                        <ul class="contact">
+                            <li>
+                                <h3>Address</h3>
+                                <p>
+                                    San Diego, California
+                                </p>
+                            </li>
+                            <li>
+                                <h3>Mail</h3>
+                                <p><a href="mailto:andrickmercado17@gmail.com">andrickmercado17@gmail.com</a></p>
+                            </li>
+                            <li>
+                                <h3>Phone</h3>
+                                <p>(619) 576-0025</p>
+                            </li>
+                            <li>
+                                <h3>Other</h3>
+                                <p><a href="https://andrick-mercado.carrd.co" target="_blank">other socials</a></p>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="col-12">
+
+                    <!-- Copyright -->
+                    <div id="copyright">
+                        <ul class="links">
+                            <li>&copy; Andrick Mercado. All rights reserved.</li>
+                            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery.dropotron.min.js"></script>
+<script src="../assets/js/browser.min.js"></script>
+<script src="../assets/js/breakpoints.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>

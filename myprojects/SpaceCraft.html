@@ -56,48 +56,88 @@
                             </header>
 
                             <p>
-                                Despite joining the team late on this 3-month semester project, I managed to make an
-                                impact on the programming team upon joining. I immediately assigned myself to bugs and
-                                or features on our task board on GitHub, with the majority of my contributions included
-                                implementing systems and bug fixing, with this I had to learn a new coding style from
-                                the team, as well as new systems already implemented before my arrival. This experience
-                                showed me how to learn from other code syntax's and essentially adapt to them, and
-                                though me the fundamentals on working on a bigger game with a bigger team of 30+.
+                                In this project me and 3 other of my classmates worked on a 3D game, where the core
+                                mechanics we wanted to implement in the game were multiplayer, saving through the use of
+                                databases, as well as user authentication, all whiting a 3D open-world game. Some
+                                features were taken out as they were simply too much for the user experience, systems
+                                that were taken out were databases and user authentication.
                             </p>
-                            <header>
-                                <ul class="links">
-                                    <li><a class="image"><img src="../gifs/sound-ai.gif" alt=""/></a></li>
-                                    <li></lo><a class="image"><img src="../gifs/interaction-system.gif"
-                                                                   alt=""/></a></li>
-                                </ul>
-                            </header>
 
 
                         </section>
+
                         <section>
+                            <header>
+                                <ul class="links">
+                                    <li><a class="image"><img src="../gifs/spacecraft_world_generation.gif" alt=""/></a>
+                                    </li>
+                                </ul>
+                            </header>
                             <header>
                                 <h3>Systems Explored</h3>
                             </header>
                             <p>
-                                In the first image, I'm showing an example of the sound-based artificial intelligence,
-                                where in the inspector can be seen the radius the enemy has for hearing footsteps and or
-                                objects thrown in that radius. The enemy shown, has three main states, patrol (going
-                                between waypoints), attack (when in the cone of vision), and sound (if an object is
-                                thrown that makes a sound or footsteps), with these states the only way to avoid the
-                                enemy is to get out of its range of vision and or crouch when near it to avoid making
-                                sounds when stepping. This AI state machine is implemented with a behavior tree, which
-                                makes the creation of states much simpler to add to.
+                                In this section I go over some of the systems I explored during the making of this game,
+                                I select the topics I found to be most interesting and that I found to be the most
+                                challenging.
                             </p>
+                            <header>
+                                <h1>Multiplayer System</h1>
+                            </header>
                             <p>
-                                In the second image, I'm showing an example of the interaction system, which is composed
-                                of picking up items, throwing them, and scrolling them away or closer to the player. To
-                                elaborate on all the mechanics, the interaction system doesn't parent the object to the
-                                player, it does it differently by applying forces, in this case, the crate, the scroll
-                                wheel mechanic just adds to the z position of the game object to push it away or closer,
-                                and the throwing mechanic just applies forward velocity based on the direction the
-                                player faces and the momentum they have.Here I just included the work that I did on the
-                                project that I found the most interesting and at the same time challenging to work with.
+                                When it came to deciding on how to move on with multiplayer, we chose to use Photon
+                                engine to facilitate the process. When it came to connecting all players to lobbies, we
+                                decided to go with room creation and joining, thus the player can join any open room on
+                                the room list menu, once a player joins all the procedurally generated items are loaded
+                                the same based on seeds, this includes the interactable items. The inventory is also
+                                shared for all players, as well as when they join. Once an item has collected a photon
+                                PunRPC is called to sync everyone's interactable in the current room, this is the same
+                                for quests and inventory of the player.
                             </p>
+                            <header>
+                                <ul class="links">
+                                    <li><a class="image"><img src="../gifs/spacecraft_multiplayer.gif" alt=""/></a></li>
+                                </ul>
+                            </header>
+
+                            <header>
+                                <h1>Interaction & Inventory System</h1>
+                            </header>
+                            <p>
+                                For the interaction system, it shoots a raycast with a given range and a layer mask and
+                                attempts to find any objects or interactable that are in the intractable layers, and
+                                once it finds an object with such layer, it activates its panel and displays the
+                                information about the object, here the objects are versatile as they are made using
+                                scriptable objects, which allows us to make many more intractable objects, with
+                                customizable settings such as time to interact and obvious what it is. Once an
+                                interactable object is collected using the selected collection key, the object calls
+                                destroy as well as updating the quest system while using the PunRPC attribute. For the
+                                inventory system I implemented using a stack-like algorithm, essentially added inventory
+                                items and stacked them if there was already one in the inventory, and expanded
+                                accordingly to the number of items, all items in this game were minerals, flint, and
+                                trees.
+                            </p>
+                            <header>
+                                <ul class="links">
+                                    <li><a class="image"><img src="../gifs/spacecraft_interaction.gif" alt=""/></a></li>
+                                </ul>
+                            </header>
+
+                            <header>
+                                <h1>Quest System</h1>
+                            </header>
+                            <p>
+                                The quest system is simple but effective, as we didn't necessarily implement a vast
+                                amount of quests, but the system can still be expanded to other quests even bosses,
+                                although we didn't implement this feature it was in our wishlist for this game. There
+                                was also a way for the player to see the active quest and know when they finished it.
+                            </p>
+                            <header>
+                                <ul class="links">
+                                    <li><a class="image"><img src="../gifs/spacecraft_quests.gif" alt=""/></a></li>
+                                </ul>
+                            </header>
+
                         </section>
 
                         <section>
@@ -105,10 +145,7 @@
                                 <h3>Links</h3>
                             </header>
                             <ul class="social">
-                                <li><a href="https://aztec-game-lab.itch.io/pestilence" target="_blank"
-                                       class="icon brands fa-itch-io"><span class="label">Itch.IO</span></a>
-                                </li>
-                                <li><a href="https://github.com/AztecGameLab/LongTermGame6" target="_blank"
+                                <li><a href="https://github.com/Andrick-Mercado/SpaceCraft" target="_blank"
                                        class="icon brands fa-github"><span class="label">Github</span></a>
                                 </li>
                             </ul>

@@ -18,7 +18,7 @@
     <section id="header">
 
         <!-- Logo -->
-        <h1><a href="../index.html">Andrick Mercado Portfolio</a></h1>
+        <h1><a href="../index">Andrick Mercado Portfolio</a></h1>
 
         <!-- Nav -->
         <nav id="nav">
@@ -65,22 +65,28 @@
                                 showed me how to learn from other code syntax's and essentially adapt to them, and
                                 though me the fundamentals on working on a bigger game with a bigger team of 30+.
                             </p>
-                            <header>
-                                <ul class="links">
-                                    <li><a class="image"><img src="../gifs/sound-ai.gif" alt=""/></a></li>
-                                    <li></lo><a class="image"><img src="../gifs/interaction-system.gif"
-                                                                   alt=""/></a></li>
-                                </ul>
-                            </header>
 
 
                         </section>
                         <section>
                             <header>
+                                <ul class="links">
+                                    <li><a class="image"><img src="../images/pestilence_background_02.jpg" alt=""/></a></li>
+                                </ul>
+                            </header>
+                            <header>
                                 <h3>Systems Explored</h3>
                             </header>
                             <p>
-                                In the first image, I'm showing an example of the sound-based artificial intelligence,
+                                In this section I go over some of the systems I explored during the making of this game,
+                                I select the topics I found to be most interesting and that I found to be the most
+                                challenging.
+                            </p>
+                            <header>
+                                <h1>Enemy AI</h1>
+                            </header>
+                            <p>
+                                In the image below, I'm showing an example of the sound-based artificial intelligence,
                                 where in the inspector can be seen the radius the enemy has for hearing footsteps and or
                                 objects thrown in that radius. The enemy shown, has three main states, patrol (going
                                 between waypoints), attack (when in the cone of vision), and sound (if an object is
@@ -89,8 +95,17 @@
                                 sounds when stepping. This AI state machine is implemented with a behavior tree, which
                                 makes the creation of states much simpler to add to.
                             </p>
+                            <header>
+                                <ul class="links">
+                                    <li><a class="image"><img src="../gifs/sound-ai.gif" alt=""/></a></li>
+                                </ul>
+                            </header>
+
+                            <header>
+                                <h1>Interaction System</h1>
+                            </header>
                             <p>
-                                In the second image, I'm showing an example of the interaction system, which is composed
+                                In the image below, I'm showing an example of the interaction system, which is composed
                                 of picking up items, throwing them, and scrolling them away or closer to the player. To
                                 elaborate on all the mechanics, the interaction system doesn't parent the object to the
                                 player, it does it differently by applying forces, in this case, the crate, the scroll
@@ -99,6 +114,13 @@
                                 player faces and the momentum they have.Here I just included the work that I did on the
                                 project that I found the most interesting and at the same time challenging to work with.
                             </p>
+                            <header>
+                                <ul class="links">
+                                    <li></lo><a class="image"><img src="../gifs/interaction-system.gif"
+                                                                   alt=""/></a></li>
+                                </ul>
+                            </header>
+
                         </section>
 
 
@@ -126,9 +148,12 @@
                                 padding: 0% 0% 56.25%; /* 16:9 ratio */
                                 overflow: hidden;
                             }
+
                             .yt iframe {
                                 position: absolute;
-                                top: 0; bottom: 0; left: 0;
+                                top: 0;
+                                bottom: 0;
+                                left: 0;
                                 width: 100%;
                                 height: 100%;
                                 border: 0;
