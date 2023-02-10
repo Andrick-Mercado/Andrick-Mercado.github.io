@@ -24,7 +24,7 @@
         <nav id="nav">
             <ul>
                 <li><a href="../index">About Me</a></li>
-                <li class="current"><a href="../myprojectsfolder">My Projects</a></li>
+                <li class="current"><a href="../myprojects">My Projects</a></li>
                 <li><a href="../myexperience&education">My Experience & Education</a></li>
                 <li><a href="../resume">Resume</a></li>
             </ul>
@@ -40,13 +40,12 @@
 
                     <!-- Content -->
                     <article class="box post">
-                        <a class="image featured"><img src="../images/safe-d2_background.jpg" alt=""/></a>
+                        <a class="image featured"><img src="../images/safe-d_logo.png" alt=""/></a>
                         <header>
                             <h2>Safe Routes to School VR <a class="icon brands fa-android"><span
                                     class="label">Android</span></a>
                                 <a class="icon brands fa-apple"><span class="label">Apple</span></a>
                                 <a class="icon solid fa-vr-cardboard "><span class="label">VR Cardboard</span></a>
-                                (NOT FINISHED)
                             </h2>
                             <p>Posted Oct 2022</p>
                         </header>
@@ -81,13 +80,14 @@
                                     <li><a class="image"><img src="../gifs/SR2S_World.gif" alt=""/></a>
                                     </li>
                                     <li>
-                                        <blockquote class="imgur-embed-pub" lang="en" data-id="a/a9XyWqQ" ><a
+                                        <blockquote class="imgur-embed-pub" lang="en" data-id="a/a9XyWqQ"><a
                                                 href="//imgur.com/a/a9XyWqQ">Game assets for SR2S VR app</a>
                                         </blockquote>
                                         <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
                                     </li>
                                 </ul>
                             </header>
+
                             <header>
                                 <h3>Systems Explored</h3>
                             </header>
@@ -96,41 +96,160 @@
                                 I select the topics I found to be most interesting and that I found to be the most
                                 challenging.
                             </p>
-                            <header>
-                                <h1>Car AI</h1>
-                            </header>
-                            <p>
-                                To be added.
-                            </p>
-                            <header>
-                                <ul class="links">
-                                </ul>
-                            </header>
+
+                            <!-- Car AI -->
+                            <section>
+                                <header>
+                                    <h1>Car AI</h1>
+                                </header>
+                                <p>
+                                    The car artificial intelligence system was the most complex system implemented in
+                                    this game. It needed to detect the player, pedestrians, other cars, and different
+                                    intersections that required the car to stop, all while maneuvering through the city.
+                                    With these requirements in mind, the car can honk at the player when the player is
+                                    in front of it, but only if the player is on the road or crossing pedestrian
+                                    intersections at red lights. With all these features already mentioned the objective
+                                    of the car was to be as realistic as possible, and this car makes use of indicator
+                                    lights as well as brake lights. Some of the code for this system is provided below.
+                                </p>
+
+
+                                <header>
+                                    <ul class="links">
+                                        <li><a class="image"><img src="../gifs/SR2S_Car_AI_01.gif" alt=""/></a>
+                                        </li>
+                                        <li><a class="image"><img src="../gifs/SR2S_Car_AI_02.gif" alt=""/></a>
+                                        </li>
+                                    </ul>
+                                </header>
+
+                                <script src="https://gist.github.com/Andrick-Mercado/bb6f100ed6c55a55eeb684246ca08204.js"></script>
+                            </section>
+
+                            <!-- Pedestrian AI -->
+                            <section>
+                                <header>
+                                    <h1>Pedestrian AI</h1>
+                                </header>
+                                <p>
+                                    The pedestrian artificial intelligence system was much simpler to implement. It only
+                                    needs to traverse through the city by selecting random points around it, all while
+                                    avoiding other pedestrians and cars. Besides traveling they were required to follow
+                                    safe walking behavior and for this, they needed to interact with the world around
+                                    them, stopping lights and all the other intersections in the game.
+                                </p>
+                                <header>
+                                    <ul class="links">
+                                        <li><a class="image"><img src="../gifs/SR2S_Ped_AI_01.gif" alt=""/></a>
+                                        </li>
+                                        <li><a class="image"><img src="../gifs/SR2S_Ped_AI_02.gif" alt=""/></a>
+                                        </li>
+                                    </ul>
+                                </header>
+                            </section>
+
+                            <!-- Database -->
+                            <section>
+                                <header>
+                                    <h1>Database</h1>
+                                </header>
+                                <p>
+                                    The database used in this game is made using the firebase API for unity, the data
+                                    collected was divided by school grade and sex, in order to analyze the data on
+                                    different factors. The use of this API, was to measure the in-game performance of
+                                    the players, in other words, we wanted to see if this tool was helping players
+                                    improve their walking behavior without forcing or altering the knowledge that they
+                                    had prior to playing this tool. Some of the code for this implementation is provided
+                                    below.
+                                </p>
+
+
+                                <header>
+                                    <ul class="links">
+                                        <li><a class="image"><img src="../images/SR2S_Database_01.jpg" alt=""/></a>
+                                        </li>
+                                    </ul>
+                                </header>
+
+                                <script src="https://gist.github.com/Andrick-Mercado/d7283ae146a989695e8b3347ec6d59a1.js"></script>
+                            </section>
+
+                            <!-- Player Controller -->
+                            <section>
+                                <header>
+                                    <h1>Player Controller</h1>
+                                </header>
+                                <p>
+                                    The player controller is the system in charge of moving the player around this
+                                    simulated world. The controller works by making use of the gyroscope sensor, on the
+                                    phone to keep track of where the player is looking relative to our game, and the
+                                    movement depends on where the player is looking at. When using google cardboard only
+                                    has one button, which essentially presses the screen when used, with this in mind
+                                    whenever the player holds the button the player will move in the direction they are
+                                    looking at.
+                                </p>
+                                <header>
+                                    <ul class="links">
+                                        <li><a class="image"><img src="../gifs/SR2S_Player_Controller_01.gif"
+                                                                  alt=""/></a>
+                                        </li>
+                                    </ul>
+                                </header>
+                            </section>
+
+                            <!-- Google Cardboard -->
+                            <section>
+                                <header>
+                                    <h1>Google Cardboard</h1>
+                                </header>
+                                <p>
+                                    This game makes use of the Google cardboard SDK, this game's main objective was to
+                                    simulate a real-world that players could use to learn safe walking behavior from the
+                                    comfort of their homes, and google cardboard being a relatively accessible product,
+                                    we decided to make use of its SDK for this project. An example is shown below of how
+                                    it looks on a Samsung Galaxy S10e.
+                                </p>
+
+                                <header>
+                                    <ul class="links">
+                                        <li><a class="image"><img src="../gifs/SR2S_Cardboard_01.gif" alt=""/></a>
+                                        </li>
+                                    </ul>
+                                </header>
+                            </section>
 
                             <header>
-                                <h1>Graphs</h1>
+                                <h2>Graphs</h2>
                             </header>
                             <p>
                                 All the data below was collected from Feaster Charter School students, thanks to their
                                 cooperation we managed to test the game and measure its student's performance when using
                                 this educational game. Below is data collected from 26 students that volunteered to be a
-                                part of the game testing for this application. NOTE: data might not show properly on
-                                small screens
+                                part of the game testing for this application. These graphs are completely intractable,
+                                the name of the graphs constrain pre-video and after-video, this refers to the score
+                                data collected prior to the educational videos we provide to the students and the scores
+                                collected after watching these videos. NOTE: data might not show properly on small
+                                screens
                             </p>
                             <header>
-                                <iframe src="../graphs/TimeOnLevelGraph.html" width="100%" height="500px"
+                                <iframe src="../graphs/Graph_Time_On_Each_Level_Pre_and_After_Video.html" width="100%"
+                                        height="500px"
                                         frameborder="0"><
                                 </iframe>
-                                <iframe src="../graphs/TimeOnRoadGraph.html" width="100%" height="500px"
+                                <iframe src="../graphs/Graph_Time_On_Road_for_Each_Level_Pre_and_After_Video.html"
+                                        width="100%" height="500px"
                                         frameborder="0"><
                                 </iframe>
-                                <iframe src="../graphs/TimeOnPedCrossingGraph.html" width="100%" height="500px"
+                                <iframe src="../graphs/Graph_Time_On_Red_Light_Crossing_for_Each_Level_Pre_and_After_Video.html"
+                                        width="100%" height="500px"
                                         frameborder="0"><
                                 </iframe>
-                                <iframe src="../graphs/CarsStoppedGraph.html" width="100%" height="500px"
+                                <iframe src="../graphs/Graph_Cars_Stopped_for_Each_Level_Pre_and_After_Educational_Video.html"
+                                        width="100%" height="500px"
                                         frameborder="0"><
                                 </iframe>
-                                <iframe src="../graphs/WouldPlayAgainGraph.html" width="100%" height="500px"
+                                <iframe src="../graphs/Graph_Would _They_Play_Again_Prompt.html" width="100%"
+                                        height="500px"
                                         frameborder="0"><
                                 </iframe>
                             </header>
@@ -140,8 +259,12 @@
                         <!-- Milanote -->
                         <section>
                             <header>
-                                <h3>Game Design Document</h3>
-                                <p>Here you can find the documented work flow, for the development of this game.</p>
+                                <h2>Game Design Document</h2>
+                                <p>Here you can find the documented work flow, for the development of this game. NOTE:
+                                    File may not work correctly on mobile devices use <a
+                                            href="https://app.milanote.com/1OK8D11fgOhJ2y?p=CcWnCc92TTL"
+                                            target="_blank">(Link Here)</a>
+                                </p>
                             </header>
 
                             <iframe src="https://app.milanote.com/1OK8D11fgOhJ2y?p=CcWnCc92TTL" width="100%"
@@ -150,12 +273,12 @@
                         <!-- Project Site -->
                         <section>
                             <header>
-                                <h3>The project site</h3>
+                                <h2>The project site</h2>
                                 <p>Here you can find more relevant information about this project.</p>
                             </header>
 
                             <iframe src="https://storymaps.arcgis.com/stories/9b51cd43c22f4868be64c1ae74e458f8?header"
-                                    width="100%" height="500px" frameborder="0" allowfullscreen
+                                    width="100%" height="750px" frameborder="0" allowfullscreen
                                     allow="geolocation"></iframe>
 
                         </section>
