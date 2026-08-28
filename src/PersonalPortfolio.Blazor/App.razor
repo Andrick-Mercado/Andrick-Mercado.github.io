@@ -1,0 +1,7 @@
+﻿@using PersonalPortfolio.Library.Application.Components
+
+<Router AppAssembly="@typeof(App).Assembly" NotFoundPage="@typeof(Pages.NotFoundPage)">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayoutPage)"/>
+    </Found>
+</Router>

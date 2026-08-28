@@ -1,0 +1,32 @@
+@using PersonalPortfolio.Library.Domain
+
+<div class="media-frame @(IsVideo ? "media-frame--video" : null) @Class" style="@FrameStyle">
+    @if (_isLoaded is false)
+    {
+        @* Sits behind the media rather than swapping places with it: an image that has not
+           decoded yet paints nothing, so the skeleton shows through without any JavaScript,
+           and a missed load event can never strand the placeholder on screen. *@
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Animation="Animation.Wave"
+                     Class="media-frame__skeleton" Width="100%" Height="100%"/>
+    }
+
+    @if (IsVideo)
+    {
+        <video @ref="_videoElement" class="media-frame__media" style="@MediaStyle"
+               poster="@PosterSrc" aria-label="@Alt"
+               muted loop playsinline preload="none">
+            @if (string.IsNullOrEmpty(_webmSrc) is false)
+            {
+                <source src="@_webmSrc" type="video/webm"/>
+            }
+            <source src="@VideoSrc" type="video/mp4"/>
+        </video>
+    }
+    else if (string.IsNullOrEmpty(Src) is false)
+    {
+        <img @ref="_imageElement" class="media-frame__media" style="@MediaStyle"
+             src="@Src" alt="@Alt"
+             loading="@LoadingMode" decoding="async" fetchpriority="@FetchPriority"
+             @onload="MarkLoaded" @onerror="MarkLoaded"/>
+    }
+</div>

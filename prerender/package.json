@@ -1,0 +1,29 @@
+{
+  "reactSnap": {
+    "source": "output/wwwroot",
+    "minifyHtml": {
+      "collapseWhitespace": true,
+      "removeComments": true
+    },
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-extensions",
+      "--disable-gpu"
+    ],
+    "puppeteerExecutablePath": null,
+    "headless": true,
+    "waitFor": 6000,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "fixWebpackChunksIssue": false,
+    "fixInsertRule": true,
+    "externalServer": false,
+    "skipThirdPartyRequests": true,
+    "cacheAjaxRequests": false,
+    "preconnectThirdParty": false
+  }
+}

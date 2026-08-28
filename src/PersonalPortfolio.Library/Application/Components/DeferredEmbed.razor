@@ -1,0 +1,40 @@
+@using PersonalPortfolio.Library.Domain
+
+<div @ref="_container" class="deferred-embed @Class" style="@BoxStyle">
+    @if (_isMounted)
+    {
+        <iframe class="deferred-embed__frame" src="@Src" title="@Title"
+                loading="lazy" allow="@Allow" allowfullscreen></iframe>
+    }
+    else
+    {
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Animation="Animation.Wave"
+                     Class="deferred-embed__skeleton" Width="100%" Height="100%"/>
+
+        <MudStack Class="deferred-embed__prompt pa-6" AlignItems="AlignItems.Center"
+                  Justify="Justify.Center" Spacing="3">
+            <MudIcon Icon="@Icon" Color="Color.Primary" Size="Size.Large"/>
+            <MudText Typo="Typo.subtitle1" Align="Align.Center"><b>@Title</b></MudText>
+            @if (string.IsNullOrEmpty(Description) is false)
+            {
+                <MudText Typo="Typo.body2" Color="Color.Secondary" Align="Align.Center">@Description</MudText>
+            }
+            <MudStack Row="true" Spacing="2" Class="flex-wrap justify-center">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@ActionIcon"
+                           OnClick="Mount">@ActionText</MudButton>
+                @if (string.IsNullOrEmpty(DownloadUrl) is false)
+                {
+                    <MudButton Variant="Variant.Outlined" Color="Color.Primary"
+                               StartIcon="@Icons.Material.Filled.Download"
+                               Href="@DownloadUrl" Target="_blank">Download</MudButton>
+                }
+                @if (string.IsNullOrEmpty(OpenUrl) is false)
+                {
+                    <MudButton Variant="Variant.Text" Color="Color.Primary"
+                               StartIcon="@Icons.Material.Filled.OpenInNew"
+                               Href="@OpenUrl" Target="_blank">Open in new tab</MudButton>
+                }
+            </MudStack>
+        </MudStack>
+    }
+</div>

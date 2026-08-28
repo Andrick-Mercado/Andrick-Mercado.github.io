@@ -1,0 +1,203 @@
+﻿@using PersonalPortfolio.Library.Domain
+@using PersonalPortfolio.Library.Domain.Mappers
+@using PersonalPortfolio.Library.Infrastructure.Extensions
+
+<PageTitle>@ClientRouteName.FirstCharToUpper()</PageTitle>
+
+@if (_hasLoaded is false)
+{
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <MudSkeleton SkeletonType="SkeletonType.Text" Width="40%" Height="48px" Class="mb-8"/>
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="140px" Class="mb-4 rounded-xl"/>
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="140px" Class="mb-4 rounded-xl"/>
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="140px" Class="rounded-xl"/>
+    </MudContainer>
+}
+else if (_currentPage?.PageFormat is CardType.Experience or CardType.Education)
+{
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2" Class="mb-2">
+            <MudIcon Icon="@IconMapper.GetIcon(_currentPage.Icon)" Color="Color.Primary" Size="Size.Large"/>
+            <MudText Typo="Typo.h4"><b>@_currentPage.Title</b></MudText>
+        </MudStack>
+        <MudDivider Class="mb-8"/>
+
+        <MudTimeline TimelinePosition="TimelinePosition.Start">
+            @foreach (var card in _currentPage.Cards)
+            {
+                <MudTimelineItem Color="Color.Primary" Size="Size.Small" Elevation="0">
+                    <ItemContent>
+                        <MudCard Elevation="1" Class="rounded-xl mb-2">
+                            <MudCardContent>
+                                @if (string.IsNullOrEmpty(card.Period) is false)
+                                {
+                                    <MudChip T="string" Variant="Variant.Text" Color="Color.Primary" Size="Size.Small" Class="ml-n1 mb-2">@card.Period</MudChip>
+                                }
+                                <MudText Typo="Typo.h6"><b>@card.Title</b></MudText>
+                                @if (string.IsNullOrEmpty(card.Subtitle) is false)
+                                {
+                                    <MudText Typo="Typo.subtitle2" Color="Color.Secondary" Class="mb-2">@card.Subtitle</MudText>
+                                }
+                                <MudText Typo="Typo.body2" Style="line-height:1.7;">@card.Body</MudText>
+
+                                @if (card.Tags.Any())
+                                {
+                                    <MudStack Row="true" Spacing="1" Class="mt-3 flex-wrap">
+                                        @foreach (var tag in card.Tags)
+                                        {
+                                            <MudChip T="string" Variant="Variant.Outlined" Size="Size.Small">@tag</MudChip>
+                                        }
+                                    </MudStack>
+                                }
+                            </MudCardContent>
+                            @if (string.IsNullOrEmpty(card.LearnMoreUrl) is false)
+                            {
+                                <MudCardActions>
+                                    <MudButton Variant="Variant.Text" Color="Color.Primary" EndIcon="@Icons.Material.Filled.OpenInNew"
+                                               Href="@card.LearnMoreUrl" Target="_blank">Learn More</MudButton>
+                                </MudCardActions>
+                            }
+                        </MudCard>
+                    </ItemContent>
+                </MudTimelineItem>
+            }
+        </MudTimeline>
+    </MudContainer>
+}
+else if (_currentPage?.PageFormat is CardType.Project)
+{
+    <MudContainer MaxWidth="MaxWidth.Large">
+        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2" Class="mb-2">
+            <MudIcon Icon="@IconMapper.GetIcon(_currentPage.Icon)" Color="Color.Primary" Size="Size.Large"/>
+            <MudText Typo="Typo.h4"><b>@_currentPage.Title</b></MudText>
+        </MudStack>
+        <MudDivider Class="mb-4"/>
+
+        @if (_availableFilterTags.Count > 0)
+        {
+            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2" Class="mb-4 flex-wrap">
+                <MudIcon Icon="@Icons.Material.Filled.FilterList" Size="Size.Small" Color="Color.Default"/>
+                @foreach (var tag in _availableFilterTags)
+                {
+                    var isSelected = _selectedTags.Contains(tag);
+                    <MudChip T="string"
+                             Variant="@(isSelected ? Variant.Filled : Variant.Outlined)"
+                             Color="@(isSelected ? Color.Primary : Color.Default)"
+                             Size="Size.Small"
+                             OnClick="@(() => ToggleTag(tag))">@tag</MudChip>
+                }
+                @if (_selectedTags.Count > 0)
+                {
+                    <MudButton Variant="Variant.Text" Color="Color.Secondary" Size="Size.Small"
+                               StartIcon="@Icons.Material.Filled.Clear" OnClick="ClearFilters">Clear</MudButton>
+                }
+            </MudStack>
+        }
+
+        <MudGrid Spacing="4" Style="align-items:start;">
+            @foreach (var project in GetFilteredProjects())
+            {
+                <MudItem xs="12" sm="6" md="4">
+                    <MudCard Elevation="1" Class="rounded-xl d-flex flex-column">
+                        @if (string.IsNullOrEmpty(project.ImageUrl) is false)
+                        {
+                            @* MudCardMedia paints a CSS background image, which the browser cannot
+                               lazy-load; a real <img> inside MediaFrame can. *@
+                            <MediaFrame Src="@project.ImageUrl" Alt="@project.Title"
+                                        Height="180" Class="rounded-t-xl"/>
+                        }
+                        <MudCardContent Class="flex-grow-1">
+                            @if (string.IsNullOrEmpty(project.ImageUrl))
+                            {
+                                <MudAvatar Color="Color.Primary" Rounded="true" Class="mb-4" Size="Size.Large">
+                                    <MudIcon Icon="@IconMapper.GetIcon(project.Icon)"/>
+                                </MudAvatar>
+                            }
+                            <MudText Typo="Typo.h6"><b>@project.Title</b></MudText>
+                            @if (string.IsNullOrEmpty(project.Subtitle) is false)
+                            {
+                                <MudText Typo="Typo.subtitle2" Color="Color.Secondary" Class="mb-2">@project.Subtitle</MudText>
+                            }
+                            <MudText Typo="Typo.body2" Style="line-height:1.7;">@project.Body</MudText>
+
+                            @if (project.Tags.Any())
+                            {
+                                <MudStack Row="true" Spacing="1" Class="mt-3 flex-wrap">
+                                    @foreach (var tag in project.Tags)
+                                    {
+                                        <MudChip T="string" Variant="Variant.Outlined" Size="Size.Small">@tag</MudChip>
+                                    }
+                                </MudStack>
+                            }
+                        </MudCardContent>
+                        @if (project.BlogSections.Any() && string.IsNullOrEmpty(project.Slug) is false)
+                        {
+                            <MudCardActions>
+                                <MudButton Variant="Variant.Text" Color="Color.Primary" EndIcon="@Icons.Material.Filled.ArrowForward"
+                                           Href="@RouteMapper.GetProjectDetailRoute(_currentPage.Endpoint, project.Slug)">Learn More</MudButton>
+                            </MudCardActions>
+                        }
+                        else if (string.IsNullOrEmpty(project.LearnMoreUrl) is false)
+                        {
+                            <MudCardActions>
+                                <MudButton Variant="Variant.Text" Color="Color.Primary" EndIcon="@Icons.Material.Filled.OpenInNew"
+                                           Href="@project.LearnMoreUrl" Target="_blank">Learn More</MudButton>
+                            </MudCardActions>
+                        }
+                    </MudCard>
+                </MudItem>
+            }
+        </MudGrid>
+    </MudContainer>
+}
+else if (_currentPage?.PageFormat is CardType.Pdf)
+{
+    <MudContainer MaxWidth="MaxWidth.Large">
+        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2" Class="mb-2">
+            <MudIcon Icon="@IconMapper.GetIcon(_currentPage.Icon)" Color="Color.Primary" Size="Size.Large"/>
+            <MudText Typo="Typo.h4"><b>@_currentPage.Title</b></MudText>
+        </MudStack>
+        <MudDivider Class="mb-8"/>
+
+        @foreach (var document in _currentPage.Cards)
+        {
+            <MudPaper Elevation="2" Class="rounded-xl overflow-hidden mb-8">
+                <MudToolBar Class="px-4">
+                    <MudIcon Icon="@IconMapper.GetIcon(document.Icon)" Color="Color.Primary" Class="mr-3"/>
+                    <MudStack Spacing="0">
+                        <MudText Typo="Typo.subtitle1"><b>@document.Title</b></MudText>
+                        @if (string.IsNullOrEmpty(document.Subtitle) is false)
+                        {
+                            <MudText Typo="Typo.caption" Color="Color.Secondary">@document.Subtitle</MudText>
+                        }
+                    </MudStack>
+                    <MudSpacer/>
+                    @if (string.IsNullOrEmpty(document.DownloadUrl) is false)
+                    {
+                        <MudTooltip Text="Download PDF">
+                            <MudIconButton Icon="@Icons.Material.Filled.Download" Color="Color.Primary"
+                                           Href="@document.DownloadUrl" Target="_blank"/>
+                        </MudTooltip>
+                    }
+                    @if (string.IsNullOrEmpty(document.LearnMoreUrl) is false)
+                    {
+                        <MudTooltip Text="Open in new tab">
+                            <MudIconButton Icon="@Icons.Material.Filled.OpenInNew" Color="Color.Primary"
+                                           Href="@document.LearnMoreUrl" Target="_blank"/>
+                        </MudTooltip>
+                    }
+                </MudToolBar>
+                <MudDivider/>
+                <DeferredEmbed Src="@document.EmbedUrl" Title="@document.Title"
+                               Description="Hosted on Google Drive. The viewer is a few megabytes, so it loads when you scroll here or ask for it."
+                               Height="80vh"
+                               Icon="@IconMapper.GetIcon(document.Icon)"
+                               ActionText="View document"
+                               ActionIcon="@Icons.Material.Filled.Description"
+                               Allow="autoplay"
+                               DownloadUrl="@document.DownloadUrl"
+                               OpenUrl="@document.LearnMoreUrl"/>
+            </MudPaper>
+        }
+    </MudContainer>
+}

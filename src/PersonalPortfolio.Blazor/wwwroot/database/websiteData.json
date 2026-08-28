@@ -1,0 +1,849 @@
+{
+  "configurations": {
+    "websiteTheme": "Green",
+    "enableDarkMode": true
+  },
+  "personalInformation": {
+    "person": {
+      "firstName": "Andrick",
+      "lastName": "Mercado",
+      "fullName": "Andrick Mercado"
+    },
+    "socialMediaLinks": {
+      "linkedIn": "andrick-mercado",
+      "mail": "andrickmercado17@gmail.com",
+      "twitter": null,
+      "github": "andrick-mercado"
+    }
+  },
+  "websiteData": {
+    "mainPage": {
+      "name": "My Portfolio",
+      "title": "About Me",
+      "headline": "Hi, I'm Andrick 👋",
+      "tagline": "Software Engineer specializing in C# and .NET, building web applications, backend services, and games.",
+      "location": "San Diego, CA",
+      "imageRoute": "images/headshot_01.webp",
+      "icon": "AccountCircle",
+      "paragraphs": [
+        "Software Engineer specializing in C# and .NET, building web applications, backend services, and games."
+      ],
+      "highlights": [
+        "C#",
+        ".NET",
+        "ASP.NET Core",
+        "Blazor",
+        "Azure Functions",
+        "Cosmos DB",
+        "Unity",
+        "Git"
+      ],
+      "resume": {
+        "name": "Resume",
+        "title": "Andrick Mercado — Resume",
+        "subtitle": "Software Engineer · San Diego, CA",
+        "period": "",
+        "body": "",
+        "icon": "InsertDriveFile",
+        "imageUrl": "",
+        "embedUrl": "https://drive.google.com/file/d/1rIMkUCai3HagRCYy6qas4SgdFNn33jot/preview",
+        "downloadUrl": "https://drive.google.com/uc?export=download&id=1rIMkUCai3HagRCYy6qas4SgdFNn33jot",
+        "learnMoreUrl": "https://drive.google.com/file/d/1rIMkUCai3HagRCYy6qas4SgdFNn33jot/view",
+        "tags": []
+      }
+    },
+    "otherPages": [
+      {
+        "sortOrder": 0,
+        "title": "Experience",
+        "endpoint": "experience",
+        "pageFormat": "Experience",
+        "icon": "Work",
+        "cards": [
+          {
+            "name": "Experience",
+            "title": "Software Engineer",
+            "subtitle": "Helix Electric · San Diego, CA",
+            "period": "May 2023 — Present",
+            "body": "Designed and implemented idempotent, event-driven workflows using Azure Functions and Cosmos DB, enabling horizontal scaling with increasing user load while maintaining data consistency across distributed executions. Managed Azure API Management (APIM) to publish and route traffic across multiple internal APIs, enforcing IP whitelisting and rate limiting. Developed a high-performance ASP.NET Core Web API using Dapper and role-based authorization, supporting more than 2x growth in request volume since initial release. Built an in-house Blazor dashboard with Azure Log Analytics integration to monitor system health in real time, and automated manual data-entry workflows, significantly reducing manual processing time.",
+            "icon": "Work",
+            "imageUrl": "",
+            "embedUrl": "",
+            "learnMoreUrl": "",
+            "tags": [
+              "C#",
+              "Azure Functions",
+              "Cosmos DB",
+              "APIM",
+              "ASP.NET Core",
+              "Dapper",
+              "Blazor"
+            ]
+          },
+          {
+            "name": "Experience",
+            "title": "Junior Software Engineer",
+            "subtitle": "SDSU Research Foundation · San Diego, CA",
+            "period": "Oct 2022 — Apr 2023",
+            "body": "Architected the backend infrastructure for an educational VR game using Unity, C#, and PlayMaker, optimizing for Android and iOS deployment with Google Cardboard. Integrated Firebase Realtime Database to manage player data and applied Python for automated analytics, generating insights from game testing sessions.",
+            "icon": "SportsEsports",
+            "imageUrl": "",
+            "embedUrl": "",
+            "learnMoreUrl": "",
+            "tags": [
+              "Unity",
+              "C#",
+              "VR",
+              "Firebase",
+              "Python"
+            ]
+          }
+        ]
+      },
+      {
+        "sortOrder": 1,
+        "title": "Education",
+        "endpoint": "education",
+        "pageFormat": "Education",
+        "icon": "School",
+        "cards": [
+          {
+            "name": "Education",
+            "title": "Bachelor's Degree in Computer Science",
+            "subtitle": "San Diego State University · San Diego, CA",
+            "period": "2022",
+            "body": "Relevant Coursework: Data Structures, Algorithms, Machine Learning, Artificial Intelligence, Advanced 3D Game Programming, Database Theory, Data Science.",
+            "icon": "School",
+            "imageUrl": "",
+            "embedUrl": "",
+            "learnMoreUrl": "",
+            "tags": [
+              "Data Structures",
+              "Algorithms",
+              "Machine Learning",
+              "AI",
+              "3D Game Programming"
+            ]
+          }
+        ]
+      },
+      {
+        "sortOrder": 2,
+        "title": "Projects",
+        "endpoint": "projects",
+        "pageFormat": "Project",
+        "icon": "RocketLaunch",
+        "filterTags": [
+          "C#",
+          ".NET MAUI",
+          "SQLite",
+          "Unity",
+          "ASP.NET Core",
+          "Machine Learning",
+          "Simulation",
+          "MCP",
+          "AI",
+          "Python"
+        ],
+        "cards": [
+          {
+            "name": "Projects",
+            "title": "MCP Builder App",
+            "subtitle": "C# · .NET MAUI · SQLite",
+            "period": "Mar 2026 — Present",
+            "body": "A .NET MAUI desktop application that generates Model Context Protocol (MCP) servers from documentation site URLs, enabling AI agents to interact with sites that lack native MCP support. Implements a hybrid C# scraping pipeline that attempts fast HTML parsing via HtmlAgilityPack with automatic fallback to Selenium for JavaScript-rendered pages, balancing speed and coverage.",
+            "icon": "Terminal",
+            "imageUrl": "",
+            "embedUrl": "",
+            "learnMoreUrl": "",
+            "slug": "mcp-builder",
+            "tags": [
+              "C#",
+              ".NET MAUI",
+              "SQLite",
+              "HtmlAgilityPack",
+              "Selenium",
+              "MCP"
+            ],
+            "blogSections": [
+              {
+                "title": "Overview / The Problem",
+                "body": "MCP Builder App is a cross-platform desktop tool built with .NET MAUI that empowers developers and AI practitioners to generate Model Context Protocol (MCP) servers from any documentation website. Many popular libraries and frameworks lack native MCP support, making it difficult for AI agents like Claude or Copilot to interact with their documentation programmatically. MCP Builder bridges that gap by scraping documentation sites and producing a fully functional MCP server that AI agents can query.",
+                "imageUrl": "",
+                "imageCaption": "",
+                "sectionType": "Text"
+              },
+              {
+                "title": "How It Works",
+                "body": "The application uses a hybrid scraping pipeline written entirely in C#. It first attempts fast HTML parsing using HtmlAgilityPack to extract content from static pages. If JavaScript-rendered content is detected, the pipeline automatically falls back to Selenium WebDriver for full browser-based scraping. This dual approach balances speed with coverage, ensuring that even modern single-page application documentation sites are fully captured. All scraped data is stored locally in an SQLite database for offline access and fast server generation.",
+                "imageUrl": "",
+                "imageCaption": "",
+                "sectionType": "Text"
+              },
+              {
+                "title": "Architecture & Design",
+                "body": "The project is built on .NET MAUI for the desktop UI, leveraging the MVVM pattern for clean separation of concerns. The scraping engine uses HtmlAgilityPack and Selenium WebDriver, with a strategy pattern to switch between them seamlessly. Data persistence is handled through SQLite with a lightweight repository layer. The generated MCP servers follow the official Model Context Protocol specification, ensuring compatibility with any MCP-compliant AI agent.",
+                "imageUrl": "",
+                "imageCaption": "",
+                "sectionType": "Text"
+              }
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Reusable Portfolio Website",
+            "subtitle": ".NET 8 Blazor Hybrid",
+            "period": "Dec 2023 — Present",
+            "body": "A Blazor WebAssembly based portfolio generator powered by a .NET MAUI application, automating GitHub Pages deployment. Enhanced usability with dark mode, local storage support, and performance optimization through prerendering with React-Snap.",
+            "icon": "Web",
+            "imageUrl": "images/ReusablePortfolio_1.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/Custom-Resume",
+            "slug": "portfolio-website",
+            "tags": [
+              "Blazor",
+              ".NET MAUI",
+              "GitHub Pages",
+              "React-Snap",
+              "Dark Mode"
+            ],
+            "blogSections": [
+              {
+                "title": "Overview",
+                "body": "This portfolio website is a fully reusable, data-driven Blazor WebAssembly application designed so that anyone can fork the repository, update a single JSON file, and have a professional portfolio site deployed to GitHub Pages within minutes. The entire site, from experience and education to projects and skills is controlled through websiteData.json, requiring zero code changes to personalize.",
+                "imageUrl": "",
+                "imageCaption": "",
+                "sectionType": "Text"
+              },
+              {
+                "title": "Architecture & Design",
+                "body": "The project follows a clean architecture with two main layers: a Blazor WebAssembly front-end project and a shared .NET class library. The library contains all components, domain models, and infrastructure services, making it possible to reuse the same components in a .NET MAUI hybrid app for desktop deployment. MudBlazor provides the entire UI component library, ensuring a consistent, modern Material Design look with built-in dark mode support and responsive layouts.",
+                "imageUrl": "",
+                "imageCaption": "",
+                "sectionType": "Text"
+              },
+              {
+                "title": "Deployment Pipeline",
+                "body": "The site is automatically built and deployed via a GitHub Actions workflow. On every push to the main branch, the workflow restores dependencies, publishes the Blazor WebAssembly app, runs React-Snap for prerendering to generate static HTML snapshots for SEO, and deploys the output to GitHub Pages. The entire process is zero-touch after the initial setup, making it trivial to keep the portfolio up to date by simply editing the JSON data file and pushing a commit.",
+                "imageUrl": "",
+                "imageCaption": "",
+                "sectionType": "Text"
+              }
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Notie Taker",
+            "subtitle": "ASP.NET Core Web App",
+            "period": "Apr 2023",
+            "body": "An ASP.NET Core web application that allows users to create, edit, and delete notes with a clean, intuitive interface.",
+            "icon": "EditNote",
+            "imageUrl": "images/NotieTakerBackground.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/NotieTaker",
+            "slug": "",
+            "tags": [
+              "C#",
+              "ASP.NET Core",
+              "SQLite",
+              "Web"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Pestilence",
+            "subtitle": "Unity · C# · Team of 30+",
+            "period": "May 2022",
+            "body": "Programmed with a team of 30+, including creating and maintaining game mechanics, tool creation for Art and Audio teams, making use of agile practices, Unity, and C#.",
+            "icon": "SportsEsports",
+            "imageUrl": "images/pestilence_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/AztecGameLab/LongTermGame6",
+            "slug": "pestilence-game",
+            "tags": [
+              "Unity",
+              "C#",
+              "Agile",
+              "Game Dev",
+              "Team Project"
+            ],
+            "blogSections": [
+              {
+                "title": "Overview",
+                "body": "Despite joining the team late on this 3-month semester project, I managed to make an impact on the programming team upon joining. I immediately assigned myself to bugs and or features on our task board on GitHub, with the majority of my contributions included implementing systems and bug fixing, with this I had to learn a new coding style from the team, as well as new systems already implemented before my arrival. This experience showed me how to learn from other code syntax's and essentially adapt to them, and though me the fundamentals on working on a bigger game with a bigger team of 30+.",
+                "imageUrl": "images/pestilence_background_02.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Systems Explored",
+                "body": "In this section I go over some of the systems I explored during the making of this game, I select the topics I found to be most interesting and that I found to be the most challenging.",
+                "imageUrl": "",
+                "imageCaption": "",
+                "sectionType": "Text"
+              },
+              {
+                "title": "Enemy AI",
+                "body": "In the image below, I'm showing an example of the sound-based artificial intelligence, where in the inspector can be seen the radius the enemy has for hearing footsteps and or objects thrown in that radius. The enemy shown, has three main states, patrol (going between waypoints), attack (when in the cone of vision), and sound (if an object is thrown that makes a sound or footsteps), with these states the only way to avoid the enemy is to get out of its range of vision and or crouch when near it to avoid making sounds when stepping. This AI state machine is implemented with a behavior tree, which makes the creation of states much simpler to add to.",
+                "imageUrl": "",
+                "videoUrl": "video/sound-ai.mp4",
+                "posterUrl": "images/sound-ai-poster.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Interaction System",
+                "body": "In the image below, I'm showing an example of the interaction system, which is composed of picking up items, throwing them, and scrolling them away or closer to the player. To elaborate on all the mechanics, the interaction system doesn't parent the object to the player, it does it differently by applying forces, in this case, the crate, the scroll wheel mechanic just adds to the z position of the game object to push it away or closer, and the throwing mechanic just applies forward velocity based on the direction the player faces and the momentum they have.Here I just included the work that I did on the project that I found the most interesting and at the same time challenging to work with.",
+                "imageUrl": "",
+                "videoUrl": "video/interaction-system.mp4",
+                "posterUrl": "images/interaction-system-poster.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Gameplay",
+                "body": "",
+                "imageUrl": "",
+                "imageCaption": "",
+                "embedUrl": "https://www.youtube.com/embed/NYqRCCpivRM",
+                "sectionType": "ExternalIframe"
+              }
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Safe Routes to School Evaluation VR App",
+            "subtitle": "Unity · VR · Google Cardboard",
+            "period": "Oct 2022",
+            "body": "Implemented game architecture for an educational VR game using Unity, C#, and PlayMaker, supporting VR for Android and iOS via Google Cardboard.",
+            "icon": "ViewInAr",
+            "imageUrl": "images/safe-d_logo.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "",
+            "slug": "safe-routes-to-school-vr-app",
+            "tags": [
+              "Unity",
+              "C#",
+              "VR",
+              "PlayMaker",
+              "Android",
+              "iOS"
+            ],
+            "blogSections": [
+              {
+                "title": "Overview",
+                "body": "This VR game was made for the San Diego State Research Foundation, specifically for the project called Safe Routes to Schools, all the parts of the game were made by me, with the only exception being the artwork (which was purchased), this game is a first-person VR controlled phone game, where the goal is to educate younger children on walking safety in a realistic world. Some important systems used for the creation of this game are the database/saving, car AI, pedestrian AI, player controller, VR interactions via a single google cardboard button, and glance, personalized feedback.",
+                "imageUrl": "",
+                "videoUrl": "video/SR2S_World.mp4",
+                "posterUrl": "images/SR2S_World-poster.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Systems Explored",
+                "body": "In this section I go over some of the systems I explored during the making of this game, I select the topics I found to be most interesting and that I found to be the most challenging.",
+                "imageUrl": "",
+                "imageCaption": "",
+                "sectionType": "Text"
+              },
+              {
+                "title": "Car AI",
+                "body": "The car artificial intelligence system was the most complex system implemented in this game. It needed to detect the player, pedestrians, other cars, and different intersections that required the car to stop, all while maneuvering through the city. With these requirements in mind, the car can honk at the player when the player is in front of it, but only if the player is on the road or crossing pedestrian intersections at red lights. With all these features already mentioned the objective of the car was to be as realistic as possible, and this car makes use of indicator lights as well as brake lights. Some of the code for this system is provided below.",
+                "imageUrl": "",
+                "videoUrl": "video/SR2S_Car_AI_01.mp4",
+                "posterUrl": "images/SR2S_Car_AI_01-poster.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Pedestrian AI",
+                "body": "The pedestrian artificial intelligence system was much simpler to implement. It only needs to traverse through the city by selecting random points around it, all while avoiding other pedestrians and cars. Besides traveling they were required to follow safe walking behavior and for this, they needed to interact with the world around them, stopping lights and all the other intersections in the game.",
+                "imageUrl": "",
+                "videoUrl": "video/SR2S_Ped_AI_02.mp4",
+                "posterUrl": "images/SR2S_Ped_AI_02-poster.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Database",
+                "body": "The database used in this game is made using the firebase API for unity, the data collected was divided by school grade and sex, in order to analyze the data on different factors. The use of this API, was to measure the in-game performance of the players, in other words, we wanted to see if this tool was helping players improve their walking behavior without forcing or altering the knowledge that they had prior to playing this tool. Some of the code for this implementation is provided below.",
+                "imageUrl": "images/SR2S_Database_01.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Player Controller",
+                "body": "The player controller is the system in charge of moving the player around this simulated world. The controller works by making use of the gyroscope sensor, on the phone to keep track of where the player is looking relative to our game, and the movement depends on where the player is looking at. When using google cardboard only has one button, which essentially presses the screen when used, with this in mind whenever the player holds the button the player will move in the direction they are looking at.",
+                "imageUrl": "",
+                "videoUrl": "video/SR2S_Player_Controller_01.mp4",
+                "posterUrl": "images/SR2S_Player_Controller_01-poster.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Google Cardboard",
+                "body": "This game makes use of the Google cardboard SDK, this game's main objective was to simulate a real-world that players could use to learn safe walking behavior from the comfort of their homes, and google cardboard being a relatively accessible product, we decided to make use of its SDK for this project. An example is shown below of how it looks on a Samsung Galaxy S10e.",
+                "imageUrl": "",
+                "videoUrl": "video/SR2S_Cardboard_01.mp4",
+                "posterUrl": "images/SR2S_Cardboard_01-poster.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Graphs",
+                "body": "All the data below was collected from Feaster Charter School students, thanks to their cooperation we managed to test the game and measure its student's performance when using this educational game. Below is data collected from 26 students that volunteered to be a part of the game testing for this application. These graphs are completely intractable, the name of the graphs constrain pre-video and after-video, this refers to the score data collected prior to the educational videos we provide to the students and the scores collected after watching these videos. NOTE: data might not show properly on small screens.",
+                "imageUrl": "",
+                "imageCaption": "",
+                "embedUrl": "graphs/Graph_Time_On_Each_Level_Pre_and_After_Video.html",
+                "sectionType": "ExternalIframe"
+              },
+              {
+                "title": "Game Design Document",
+                "body": "Here you can find the documented work flow, for the development of this game. NOTE: File may not work correctly on mobile devices use",
+                "imageUrl": "",
+                "imageCaption": "",
+                "embedUrl": "https://app.milanote.com/1OK8D11fgOhJ2y?p=CcWnCc92TTL",
+                "sectionType": "ExternalIframe"
+              }
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "SpaceCraft",
+            "subtitle": "Unity · 3D Multiplayer",
+            "period": "May 2022",
+            "body": "SpaceCraft is a 3rd-person multiplayer open-world quest game where the key objectives are exploring new planets while completing quests.",
+            "icon": "Rocket",
+            "imageUrl": "images/SpaceCraft_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/SpaceCraft",
+            "slug": "spacecraft-game",
+            "tags": [
+              "Unity",
+              "C#",
+              "3D",
+              "Multiplayer",
+              "Open World"
+            ],
+            "blogSections": [
+              {
+                "title": "Overview",
+                "body": "In this project me and 3 other of my classmates worked on a 3D game, where the core mechanics we wanted to implement in the game were multiplayer, saving through the use of databases, as well as user authentication, all whiting a 3D open-world game. Some features were taken out as they were simply too much for the user experience, systems that were taken out were databases and user authentication.",
+                "imageUrl": "",
+                "videoUrl": "video/spacecraft_world_generation.mp4",
+                "posterUrl": "images/spacecraft_world_generation-poster.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Systems Explored",
+                "body": "In this section I go over some of the systems I explored during the making of this game, I select the topics I found to be most interesting and that I found to be the most challenging.",
+                "imageUrl": "",
+                "imageCaption": "",
+                "sectionType": "Text"
+              },
+              {
+                "title": "Multiplayer System",
+                "body": "When it came to deciding on how to move on with multiplayer, we chose to use Photon engine to facilitate the process. When it came to connecting all players to lobbies, we decided to go with room creation and joining, thus the player can join any open room on the room list menu, once a player joins all the procedurally generated items are loaded the same based on seeds, this includes the interactable items. The inventory is also shared for all players, as well as when they join. Once an item has collected a photon PunRPC is called to sync everyone's interactable in the current room, this is the same for quests and inventory of the player.",
+                "imageUrl": "",
+                "videoUrl": "video/spacecraft_multiplayer.mp4",
+                "posterUrl": "images/spacecraft_multiplayer-poster.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Interaction & Inventory System",
+                "body": "For the interaction system, it shoots a raycast with a given range and a layer mask and attempts to find any objects or interactable that are in the intractable layers, and once it finds an object with such layer, it activates its panel and displays the information about the object, here the objects are versatile as they are made using scriptable objects, which allows us to make many more intractable objects, with customizable settings such as time to interact and obvious what it is. Once an interactable object is collected using the selected collection key, the object calls destroy as well as updating the quest system while using the PunRPC attribute. For the inventory system I implemented using a stack-like algorithm, essentially added inventory items and stacked them if there was already one in the inventory, and expanded accordingly to the number of items, all items in this game were minerals, flint, and trees.",
+                "imageUrl": "",
+                "videoUrl": "video/spacecraft_interaction.mp4",
+                "posterUrl": "images/spacecraft_interaction-poster.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Quest System",
+                "body": "The quest system is simple but effective, as we didn't necessarily implement a vast amount of quests, but the system can still be expanded to other quests even bosses, although we didn't implement this feature it was in our wishlist for this game. There was also a way for the player to see the active quest and know when they finished it.",
+                "imageUrl": "",
+                "videoUrl": "video/spacecraft_quests.mp4",
+                "posterUrl": "images/spacecraft_quests-poster.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              }
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Traversial",
+            "subtitle": "Unity · 3D Adventure",
+            "period": "Jul 2022",
+            "body": "Escape with your life if you can! Traversial is a game where you need to escape a space prison while monsters guard the exits.",
+            "icon": "SportsEsports",
+            "imageUrl": "images/Traversial_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/Traversial",
+            "slug": "traversial-game",
+            "tags": [
+              "Unity",
+              "C#",
+              "3D",
+              "Adventure"
+            ],
+            "blogSections": [
+              {
+                "title": "Overview",
+                "body": "This game was made for a game jam called AGL Summer Game Jam 2022, part of the SDSU Aztec Game Lab club, all the parts of the game were made by me, with the only exception being the artwork, this game is a short 3rd perspective stealth game, where the goal is to escape out of this complex space building you are trapped in. Some important systems used for the making of this game are the enemy AI, and player controller.",
+                "imageUrl": "",
+                "videoUrl": "video/traversial_gameplay.mp4",
+                "posterUrl": "images/traversial_gameplay-poster.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Systems Explored",
+                "body": "In this section I go over some of the systems I explored during the making of this game, I select the topics I found to be most interesting and that I found to be the most challenging.",
+                "imageUrl": "",
+                "imageCaption": "",
+                "sectionType": "Text"
+              },
+              {
+                "title": "Enemy AI",
+                "body": "For the making of this game, the enemy AI had to be well done, to produce better gameplay for the player, and thus I decided to use a behavioral tree with 3 states, patrolling between waypoints, hearing sound essentially when the enemy hears a player, specifically the footsteps made when a player runs and or lands when jumping, lastly is the attack state, which is just based on line of side and if the player is close enough, as well as being synchronized with the animation. Below are some gifs demonstrating the enemy AI in action, hearing, visual states, and attack states.",
+                "imageUrl": "",
+                "videoUrl": "video/traversial_enemy_ai_alt_02.mp4",
+                "posterUrl": "images/traversial_enemy_ai_alt_02-poster.webp",
+                "imageCaption": "",
+                "sectionType": "TextWithImage"
+              },
+              {
+                "title": "Traversial on Your Browser",
+                "body": "",
+                "imageUrl": "",
+                "imageCaption": "",
+                "embedUrl": "https://itch.io/embed-upload/6670635?color=333333",
+                "sectionType": "ExternalIframe"
+              }
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Platformer Co-Op",
+            "subtitle": "Unity · 2D Co-Op",
+            "period": "Oct 2022",
+            "body": "A 2D platformer co-op game made for the Aztec Game Lab club's 2nd workshop of the semester at San Diego State University, built by a group of 4 people in 2 weeks.",
+            "icon": "SportsEsports",
+            "imageUrl": "images/platformer-co-op_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/Platformer-Co-Op",
+            "slug": "",
+            "tags": [
+              "Unity",
+              "C#",
+              "2D",
+              "Co-Op",
+              "Game Jam"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Gravity",
+            "subtitle": "Unity · 2D Puzzle",
+            "period": "Dec 2022",
+            "body": "A 2D puzzle game made for the Aztec Game Lab club's 3rd workshop of the semester at San Diego State University, built by a group of 5 people in 2 weeks.",
+            "icon": "SportsEsports",
+            "imageUrl": "images/gravity_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/zaydjd/Workshop3-Team1",
+            "slug": "",
+            "tags": [
+              "Unity",
+              "C#",
+              "2D",
+              "Puzzle",
+              "Game Jam"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Mazes 3D",
+            "subtitle": "Unity · 3D Puzzle",
+            "period": "Dec 2021",
+            "body": "One of the first 3D games developed using Unity, built over two months with a group of 3 people. The objective is solving mazes in a 3D world.",
+            "icon": "SportsEsports",
+            "imageUrl": "images/mazes-3d_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/Mazes-3D",
+            "slug": "",
+            "tags": [
+              "Unity",
+              "C#",
+              "3D",
+              "Puzzle"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Chasing Bullets",
+            "subtitle": "Unity · 2D Shooter",
+            "period": "Jun 2021",
+            "body": "A 2D game made entirely solo using Unity — all art and code. The objective is to prevent aliens from reaching you with a limited amount of bullets.",
+            "icon": "SportsEsports",
+            "imageUrl": "images/chasing-bullets_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/Chasing-Bullets",
+            "slug": "",
+            "tags": [
+              "Unity",
+              "C#",
+              "2D",
+              "Solo Project"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Rule Base Expert System",
+            "subtitle": "Unity · C# · AI",
+            "period": "Oct 2022",
+            "body": "A rule-based expert system consisting of a rule base and a database (map of the environment). After each move the system goes through if-then rules sequentially using forward and backward chaining to determine which rule is fired.",
+            "icon": "Psychology",
+            "imageUrl": "",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/CS657-A1",
+            "slug": "",
+            "tags": [
+              "Unity",
+              "C#",
+              "AI",
+              "Expert System"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Genetic Algorithm to Optimize Two Paths",
+            "subtitle": "C# · AI Optimization",
+            "period": "Nov 2022",
+            "body": "Developed a program using genetic algorithms to solve a warehouse delivery optimization problem — first with a single warehouse delivering appliances to all homes, then extended to two warehouses.",
+            "icon": "Psychology",
+            "imageUrl": "images/genetic-algorithm-pathfinding_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/CS657-A3",
+            "slug": "",
+            "tags": [
+              "C#",
+              "Genetic Algorithm",
+              "AI",
+              "Optimization"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Debugging using ImGui",
+            "subtitle": "Unity · C# · ImGui",
+            "period": "Nov 2022",
+            "body": "A 2D character controller built in Unity, using ImGui for debugging movement and projectile systems with real-time visual overlays.",
+            "icon": "BugReport",
+            "imageUrl": "images/IMGui-example_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/dominic-griffith/AGL_Team_6/tree/Andrick/Work",
+            "slug": "",
+            "tags": [
+              "Unity",
+              "C#",
+              "ImGui",
+              "Debugging"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Flocking Behavior (Boids)",
+            "subtitle": "Unity · 3D Simulation",
+            "period": "Feb 2022",
+            "body": "A fully functional 3D simulation implementing flocking behavior with a GUI that switches between three modes: Lazy Flight, Circle a Tree, and Follow the Leader.",
+            "icon": "Flutter",
+            "imageUrl": "images/flocking_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/Boids",
+            "slug": "",
+            "tags": [
+              "Unity",
+              "C#",
+              "3D",
+              "Simulation",
+              "Boids"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Procedurally Generated Terrain Editor",
+            "subtitle": "Unity · 3D Tool",
+            "period": "Feb 2022",
+            "body": "A procedurally generated terrain editor that can create terrains for use in 3D games, with real-time parameter controls.",
+            "icon": "Terrain",
+            "imageUrl": "images/pgt-editor_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/PGT-Editor",
+            "slug": "",
+            "tags": [
+              "Unity",
+              "C#",
+              "3D",
+              "Procedural Generation"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Procedurally Generated Mesh",
+            "subtitle": "Unity · 3D Simulation",
+            "period": "Feb 2022",
+            "body": "A procedurally generated mesh system that can be used to simulate waves for 3D games, with real-time parameter adjustments.",
+            "icon": "Waves",
+            "imageUrl": "images/pgm_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/PGM",
+            "slug": "",
+            "tags": [
+              "Unity",
+              "C#",
+              "3D",
+              "Procedural Generation"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Bank Application",
+            "subtitle": "Java · OOP",
+            "period": "May 2020",
+            "body": "An object-oriented bank application built with Java, designed to simulate a real-world banking system with account management features.",
+            "icon": "AccountBalance",
+            "imageUrl": "images/bank-java_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/Andrick-Mercado/tree/main/Code/Java/CS108%20-%20Computer%20Programming/Bank",
+            "slug": "",
+            "tags": [
+              "Java",
+              "OOP"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Cipher Application",
+            "subtitle": "Java · Cryptography",
+            "period": "Apr 2020",
+            "body": "A cipher application that can encrypt and decrypt text based on user-created keys. Encryption supports alphabet letters with configurable key-based substitution.",
+            "icon": "Lock",
+            "imageUrl": "images/cypher-java_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/Andrick-Mercado/tree/main/Code/Java/CS108%20-%20Computer%20Programming/Cipher",
+            "slug": "",
+            "tags": [
+              "Java",
+              "Cryptography"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Donor Application",
+            "subtitle": "Java · OOP",
+            "period": "Mar 2020",
+            "body": "Inspired by the pandemic, this Donor application is a simulated donation page for people to donate supplies to help local hospitals in need of resources.",
+            "icon": "VolunteerActivism",
+            "imageUrl": "images/donor-page-java_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/Andrick-Mercado/tree/main/Code/Java/CS108%20-%20Computer%20Programming/CS%20108%20-%20Donor%20Application",
+            "slug": "",
+            "tags": [
+              "Java",
+              "OOP"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Snake Game",
+            "subtitle": "Java · 2D Game",
+            "period": "Jul 2019",
+            "body": "A classic snake game built with Java as a personal project — a fun recreation of the timeless arcade game.",
+            "icon": "SportsEsports",
+            "imageUrl": "images/snake-game-java_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/Andrick-Mercado/tree/main/Code/Java/FUN%20-%20Projects/Snake%20Game",
+            "slug": "",
+            "tags": [
+              "Java",
+              "2D",
+              "Game Dev"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Object Detection in Minecraft",
+            "subtitle": "Python · TensorFlow",
+            "period": "Dec 2022",
+            "body": "3D object localization using TensorFlow applied to the game Minecraft, actively detecting and locating beds within the game world in real time.",
+            "icon": "Visibility",
+            "imageUrl": "images/object-detection-python_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/TFOD",
+            "slug": "",
+            "tags": [
+              "Python",
+              "TensorFlow",
+              "Object Detection",
+              "Machine Learning"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Neural Network from Scratch",
+            "subtitle": "Python · Machine Learning",
+            "period": "Dec 2021",
+            "body": "A neural network implemented from scratch with one hidden layer, three inputs, and one output — no ML frameworks used, just pure Python and math.",
+            "icon": "Hub",
+            "imageUrl": "images/nn-python_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/Andrick-Mercado/blob/main/Code/Python/CS%20549%20-%20Machine%20Learning/A5%20-%20NN/A5.py",
+            "slug": "",
+            "tags": [
+              "Python",
+              "Neural Network",
+              "Machine Learning"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "8-Puzzle Solver using Recursion",
+            "subtitle": "Python · AI Search",
+            "period": "Sep 2021",
+            "body": "An 8-puzzle solver using recursive search algorithms in Python with an included UI for visualizing the solution process.",
+            "icon": "Extension",
+            "imageUrl": "images/8-puzzle-python_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/Andrick-Mercado/blob/Python-Work/Code/Jupyter/CS%20550%20-%20Artificial%20Intelligence/8%20Puzzle%20Solver/Assignment%202%20CS550%20Search%20-Clean-1.ipynb",
+            "slug": "",
+            "tags": [
+              "Python",
+              "AI",
+              "Search Algorithms",
+              "Recursion"
+            ]
+          },
+          {
+            "name": "Projects",
+            "title": "Sudoku Solver using Constraint Satisfaction",
+            "subtitle": "Python · AI",
+            "period": "Oct 2021",
+            "body": "A Sudoku solver using constraint satisfaction techniques to efficiently find the best solution to all solvable boards.",
+            "icon": "GridOn",
+            "imageUrl": "images/constraint-satisfaction_background.webp",
+            "embedUrl": "",
+            "learnMoreUrl": "https://github.com/Andrick-Mercado/Andrick-Mercado/blob/Python-Work/Code/Jupyter/CS%20550%20-%20Artificial%20Intelligence/Sudoku%20Puzzle%20Solver/Sudoku_Solve.ipynb",
+            "slug": "",
+            "tags": [
+              "Python",
+              "AI",
+              "Constraint Satisfaction"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
