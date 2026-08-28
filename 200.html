@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>PersonalPortfolio</title>
+    <base href="/Andrick-Mercado.github.io/"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet"/>
+
+    <!-- Every page waits on this file, but it is only discoverable after the WebAssembly
+         runtime has booted, so fetch it in parallel with the framework download instead. -->
+    <link rel="preload" href="database/websiteData.json" as="fetch" crossorigin="anonymous"/>
+    <!-- Landing-page headshot: the largest element above the fold. -->
+    <link rel="preload" href="images/headshot_01.webp" as="image" fetchpriority="high"/>
+    <!-- The resume iframe is mounted on demand; warm the connection so the click feels instant. -->
+    <link rel="preconnect" href="https://drive.google.com"/>
+    <style>
+        /* Darkens the browser canvas that is painted before MudBlazor's palette variables resolve. */
+        html.mud-preload-dark {
+            color-scheme: dark;
+        }
+
+        /* Colors come from CSS variables, but markup that differs between the two themes has to be
+           swapped as well: elements marked '-only' stand in for the '-hidden' ones while the
+           prerendered snapshot is being shown in dark mode. */
+        html .mud-preload-dark-only {
+            display: none;
+        }
+
+        html.mud-preload-dark .mud-preload-dark-hidden {
+            display: none;
+        }
+
+        html.mud-preload-dark .mud-preload-dark-only {
+            display: inline-flex;
+        }
+
+        /* MediaFrame: the box is sized from aspect-ratio or an explicit height before anything
+           downloads, so lazy media never shifts the text around it. The skeleton is a sibling
+           painted underneath rather than a replacement for the media, which means an image that
+           was already in cache simply covers it and no load event can be missed. */
+        .media-frame {
+            position: relative;
+            display: block;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .media-frame__skeleton,
+        .deferred-embed__skeleton {
+            position: absolute !important;
+            inset: 0;
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            border-radius: inherit;
+        }
+
+        .media-frame__media {
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            animation: media-frame-fade 350ms ease-out;
+        }
+
+        /* Clip aspect ratios vary from 1.1:1 to 2.1:1, so they are letterboxed rather than
+           cropped; a dark matte makes that read as deliberate. */
+        .media-frame--video {
+            background: #000;
+        }
+
+        @keyframes media-frame-fade {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .media-frame__media {
+                animation: none;
+            }
+        }
+
+        /* DeferredEmbed: reserves the iframe's box and shows a call to action until the reader
+           scrolls to it, so third-party embeds cost nothing on first paint. */
+        .deferred-embed {
+            position: relative;
+            display: block;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .deferred-embed__prompt {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        .deferred-embed__frame {
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+    <script>
+        // Runs before the first paint so the prerendered snapshot is shown with the same theme the
+        // WebAssembly app will render once it has booted, which avoids a flash of the wrong theme.
+        // The dark palette is not duplicated here: MainLayoutPage renders it into the snapshot scoped
+        // to ':root.mud-preload-dark', so adding that class is all it takes to switch it on. The app
+        // removes the class again once it has rendered the resolved preference itself.
+        (function () {
+            try {
+                var preferences = localStorage.getItem('Preferences');
+                if (preferences) {
+                    var parsed = JSON.parse(preferences);
+                    if (parsed.DarkMode === true || parsed.darkMode === true) {
+                        document.documentElement.classList.add('mud-preload-dark');
+                    }
+                }
+            } catch (e) {
+                // localStorage can be unavailable (private mode, blocked storage); fall back to the light theme.
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <div id="app">Loading...</div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+</body>
+
+</html>
