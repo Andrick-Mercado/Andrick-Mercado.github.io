@@ -1,0 +1,129 @@
+﻿@using PersonalPortfolio.Library.Domain.Mappers
+
+@if (_hasLoaded)
+{
+    <PageTitle>@_mainPage?.Title</PageTitle>
+
+    <MudContainer MaxWidth="MaxWidth.Medium">
+
+        <!-- Hero section -->
+        <MudGrid Class="align-center" Spacing="6">
+            <MudItem xs="12" sm="4" Class="d-flex justify-center">
+                <MudAvatar Style="height:220px; width:220px; font-size:2rem;" Elevation="4">
+                    @* The only eagerly loaded image on the site: it is the largest element above
+                       the fold, so lazy-loading it would delay the largest contentful paint. *@
+                    <MediaFrame Src="@_mainPage?.ImageRoute" Alt="Headshot" Eager="true" Height="220"/>
+                </MudAvatar>
+            </MudItem>
+
+            <MudItem xs="12" sm="8">
+                <MudText Typo="Typo.h3" Class="fw-bold" GutterBottom="true"><b>@_mainPage?.Headline</b></MudText>
+                <MudText Typo="Typo.h6" Color="Color.Primary" GutterBottom="true">@_mainPage?.Tagline</MudText>
+
+                @if (string.IsNullOrEmpty(_mainPage?.Location) is false)
+                {
+                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1" Class="mb-4">
+                        <MudIcon Icon="@Icons.Material.Filled.LocationOn" Size="Size.Small" Color="Color.Secondary"/>
+                        <MudText Typo="Typo.body2" Color="Color.Secondary">@_mainPage.Location</MudText>
+                    </MudStack>
+                }
+
+                <MudStack Row="true" Spacing="2" Class="mt-2 flex-wrap">
+                    @if (string.IsNullOrEmpty(_resumeUrl) is false)
+                    {
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Description"
+                                   Href="@_resumeUrl" Target="@_resumeTarget">View Resume</MudButton>
+                    }
+                    @if (string.IsNullOrEmpty(_personalInformation?.SocialMediaLinks.Github) is false)
+                    {
+                        <MudButton Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Custom.Brands.GitHub"
+                                   Href="@UriMapper.GetGitHubUri(_personalInformation.SocialMediaLinks.Github)" Target="_blank">GitHub</MudButton>
+                    }
+                    @if (string.IsNullOrEmpty(_personalInformation?.SocialMediaLinks.LinkedIn) is false)
+                    {
+                        <MudButton Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Custom.Brands.LinkedIn"
+                                   Href="@UriMapper.GetLinkedInUri(_personalInformation.SocialMediaLinks.LinkedIn)" Target="_blank">LinkedIn</MudButton>
+                    }
+                    @if (string.IsNullOrEmpty(_personalInformation?.SocialMediaLinks.Mail) is false)
+                    {
+                        <MudButton Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Email"
+                                   Href="@UriMapper.GetMailUri(_personalInformation.SocialMediaLinks.Mail)">Contact</MudButton>
+                    }
+                </MudStack>
+            </MudItem>
+        </MudGrid>
+
+        <!-- Tech highlights -->
+        @if (_mainPage?.Highlights.Any() ?? false)
+        {
+            <MudStack Row="true" Justify="Justify.Center" Spacing="2" Class="mt-8 flex-wrap">
+                @foreach (var highlight in _mainPage.Highlights)
+                {
+                    <MudChip T="string" Variant="Variant.Text" Color="Color.Primary" Size="Size.Medium">@highlight</MudChip>
+                }
+            </MudStack>
+        }
+
+        <!-- Resume section -->
+        @if (_resume is not null)
+        {
+            <MudPaper id="resume" Elevation="2" Class="rounded-xl overflow-hidden mt-8">
+                <MudToolBar Class="px-4">
+                    <MudIcon Icon="@IconMapper.GetIcon(_resume.Icon)" Color="Color.Primary" Class="mr-3"/>
+                    <MudStack Spacing="0">
+                        <MudText Typo="Typo.subtitle1"><b>@_resume.Title</b></MudText>
+                        @if (string.IsNullOrEmpty(_resume.Subtitle) is false)
+                        {
+                            <MudText Typo="Typo.caption" Color="Color.Secondary">@_resume.Subtitle</MudText>
+                        }
+                    </MudStack>
+                    <MudSpacer/>
+                    @if (string.IsNullOrEmpty(_resume.DownloadUrl) is false)
+                    {
+                        <MudTooltip Text="Download PDF">
+                            <MudIconButton Icon="@Icons.Material.Filled.Download" Color="Color.Primary"
+                                           Href="@_resume.DownloadUrl" Target="_blank"/>
+                        </MudTooltip>
+                    }
+                    @if (string.IsNullOrEmpty(_resume.LearnMoreUrl) is false)
+                    {
+                        <MudTooltip Text="Open in new tab">
+                            <MudIconButton Icon="@Icons.Material.Filled.OpenInNew" Color="Color.Primary"
+                                           Href="@_resume.LearnMoreUrl" Target="_blank"/>
+                        </MudTooltip>
+                    }
+                </MudToolBar>
+                <MudDivider/>
+                <DeferredEmbed Src="@_resume.EmbedUrl" Title="@_resume.Title"
+                               Description="Hosted on Google Drive. The viewer is a few megabytes, so it loads when you scroll here or ask for it."
+                               Height="80vh"
+                               Icon="@IconMapper.GetIcon(_resume.Icon)"
+                               ActionText="View resume"
+                               ActionIcon="@Icons.Material.Filled.Description"
+                               Allow="autoplay"
+                               DownloadUrl="@_resume.DownloadUrl"
+                               OpenUrl="@_resume.LearnMoreUrl"/>
+            </MudPaper>
+        }
+
+    </MudContainer>
+}
+else
+{
+    <PageTitle>Loading...</PageTitle>
+
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <MudGrid Class="align-center" Spacing="6">
+            <MudItem xs="12" sm="4" Class="d-flex justify-center">
+                <MudSkeleton SkeletonType="SkeletonType.Circle" Height="220px" Width="220px"/>
+            </MudItem>
+            <MudItem xs="12" sm="8">
+                <MudSkeleton SkeletonType="SkeletonType.Text" Width="60%" Height="48px" Class="mb-4"/>
+                <MudSkeleton SkeletonType="SkeletonType.Text" Width="80%" Class="mb-2"/>
+                <MudSkeleton SkeletonType="SkeletonType.Text" Width="40%" Class="mb-4"/>
+                <MudSkeleton SkeletonType="SkeletonType.Rectangle" Width="320px" Height="36px"/>
+            </MudItem>
+        </MudGrid>
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="400px" Class="mt-8 rounded-xl"/>
+    </MudContainer>
+}

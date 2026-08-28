@@ -1,0 +1,169 @@
+@using PersonalPortfolio.Library.Domain
+@using PersonalPortfolio.Library.Domain.Mappers
+@using PersonalPortfolio.Library.Infrastructure.Extensions
+
+<PageTitle>@(_project?.Title ?? Slug.FirstCharToUpper())</PageTitle>
+
+@if (_hasLoaded is false)
+{
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <MudSkeleton SkeletonType="SkeletonType.Text" Width="30%" Height="32px" Class="mb-2"/>
+        <MudSkeleton SkeletonType="SkeletonType.Text" Width="60%" Height="48px" Class="mb-4"/>
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="300px" Class="mb-6 rounded-xl"/>
+        <MudSkeleton SkeletonType="SkeletonType.Text" Width="100%" Height="20px" Class="mb-2"/>
+        <MudSkeleton SkeletonType="SkeletonType.Text" Width="100%" Height="20px" Class="mb-2"/>
+        <MudSkeleton SkeletonType="SkeletonType.Text" Width="80%" Height="20px" Class="mb-6"/>
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" Class="rounded-xl"/>
+    </MudContainer>
+}
+else if (_project is null)
+{
+    <MudContainer MaxWidth="MaxWidth.Medium" Class="d-flex flex-column align-center justify-center" Style="min-height:40vh;">
+        <MudIcon Icon="@Icons.Material.Filled.SearchOff" Size="Size.Large" Color="Color.Secondary" Class="mb-4"/>
+        <MudText Typo="Typo.h5" Color="Color.Secondary">Project not found</MudText>
+        <MudButton Variant="Variant.Text" Color="Color.Primary" StartIcon="@Icons.Material.Filled.ArrowBack"
+                   Href="@RouteMapper.GetAllCardsRoute(PageEndpoint)" Class="mt-4">Back to Projects</MudButton>
+    </MudContainer>
+}
+else
+{
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <!-- Back navigation -->
+        <MudButton Variant="Variant.Text" Color="Color.Primary" StartIcon="@Icons.Material.Filled.ArrowBack"
+                   Href="@RouteMapper.GetAllCardsRoute(PageEndpoint)" Class="mb-4">
+            Back to @(_parentPage?.Title ?? "Projects")
+        </MudButton>
+
+        <!-- Hero section -->
+        <MudPaper Elevation="1" Class="rounded-xl overflow-hidden mb-8">
+            @if (HasMedia(_project.ImageUrl, _project.VideoUrl))
+            {
+                <MediaFrame Src="@_project.ImageUrl" VideoSrc="@_project.VideoUrl" PosterSrc="@_project.PosterUrl"
+                            Alt="@_project.Title" MaxHeight="400"/>
+            }
+            <MudStack Class="pa-6 pa-md-8" Spacing="2">
+                <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                    <MudAvatar Color="Color.Primary" Rounded="true" Size="Size.Large">
+                        <MudIcon Icon="@IconMapper.GetIcon(_project.Icon)"/>
+                    </MudAvatar>
+                    <MudStack Spacing="0">
+                        <MudText Typo="Typo.h4"><b>@_project.Title</b></MudText>
+                        @if (string.IsNullOrEmpty(_project.Subtitle) is false)
+                        {
+                            <MudText Typo="Typo.subtitle1" Color="Color.Secondary">@_project.Subtitle</MudText>
+                        }
+                    </MudStack>
+                </MudStack>
+
+                @if (string.IsNullOrEmpty(_project.Period) is false)
+                {
+                    <MudChip T="string" Variant="Variant.Text" Color="Color.Primary" Size="Size.Small" Class="ml-n1">@_project.Period</MudChip>
+                }
+
+                @if (string.IsNullOrEmpty(_project.Body) is false)
+                {
+                    <MudText Typo="Typo.body1" Style="line-height:1.8;" Class="mt-2">@_project.Body</MudText>
+                }
+
+                @if (_project.Tags.Any())
+                {
+                    <MudStack Row="true" Spacing="1" Class="mt-3 flex-wrap">
+                        @foreach (var tag in _project.Tags)
+                        {
+                            <MudChip T="string" Variant="Variant.Outlined" Size="Size.Small">@tag</MudChip>
+                        }
+                    </MudStack>
+                }
+
+                @if (string.IsNullOrEmpty(_project.LearnMoreUrl) is false)
+                {
+                    <MudStack Row="true" Spacing="2" Class="mt-4">
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary"
+                                   StartIcon="@Icons.Material.Filled.OpenInNew"
+                                   Href="@_project.LearnMoreUrl" Target="_blank">
+                            View on GitHub
+                        </MudButton>
+                    </MudStack>
+                }
+            </MudStack>
+        </MudPaper>
+
+        <!-- Blog sections -->
+        @foreach (var section in _project.BlogSections)
+        {
+            @if (section.SectionType == BlogSectionType.Text)
+            {
+                <MudPaper Elevation="0" Class="pa-6 pa-md-8 mb-6 rounded-xl" Style="background:transparent;">
+                    @if (string.IsNullOrEmpty(section.Title) is false)
+                    {
+                        <MudText Typo="Typo.h5" Class="mb-4"><b>@section.Title</b></MudText>
+                    }
+                    <MudText Typo="Typo.body1" Style="line-height:1.8;">@section.Body</MudText>
+                </MudPaper>
+            }
+            else if (section.SectionType == BlogSectionType.Image)
+            {
+                <MudPaper Elevation="1" Class="rounded-xl overflow-hidden mb-6">
+                    <MediaFrame Src="@section.ImageUrl" VideoSrc="@section.VideoUrl" PosterSrc="@section.PosterUrl"
+                                Alt="@(section.ImageCaption ?? section.Title)" MaxHeight="500"/>
+                    @if (string.IsNullOrEmpty(section.ImageCaption) is false)
+                    {
+                        <MudStack Class="pa-4" AlignItems="AlignItems.Center">
+                            <MudText Typo="Typo.caption" Color="Color.Secondary" Align="Align.Center">@section.ImageCaption</MudText>
+                        </MudStack>
+                    }
+                </MudPaper>
+            }
+            else if (section.SectionType == BlogSectionType.TextWithImage)
+            {
+                <MudPaper Elevation="1" Class="rounded-xl overflow-hidden mb-6">
+                    @if (HasMedia(section.ImageUrl, section.VideoUrl))
+                    {
+                        <MediaFrame Src="@section.ImageUrl" VideoSrc="@section.VideoUrl" PosterSrc="@section.PosterUrl"
+                                    Alt="@(section.ImageCaption ?? section.Title)" MaxHeight="400"/>
+                    }
+                    <MudStack Class="pa-6 pa-md-8" Spacing="2">
+                        @if (string.IsNullOrEmpty(section.Title) is false)
+                        {
+                            <MudText Typo="Typo.h5"><b>@section.Title</b></MudText>
+                        }
+                        @if (string.IsNullOrEmpty(section.Body) is false)
+                        {
+                            <MudText Typo="Typo.body1" Style="line-height:1.8;">@section.Body</MudText>
+                        }
+                        @if (string.IsNullOrEmpty(section.ImageCaption) is false)
+                        {
+                            <MudText Typo="Typo.caption" Color="Color.Secondary">@section.ImageCaption</MudText>
+                        }
+                    </MudStack>
+                </MudPaper>
+            }
+            else if (section.SectionType == BlogSectionType.ExternalIframe)
+            {
+                <MudPaper Elevation="1" Class="rounded-xl overflow-hidden mb-6">
+                    <MudStack Class="pa-6 pa-md-8" Spacing="2">
+                        @if (string.IsNullOrEmpty(section.Title) is false)
+                        {
+                            <MudText Typo="Typo.h5"><b>@section.Title</b></MudText>
+                        }
+                        @if (string.IsNullOrEmpty(section.Body) is false)
+                        {
+                            <MudText Typo="Typo.body1" Style="line-height:1.8;">@section.Body</MudText>
+                        }
+                    </MudStack>
+
+                    @if (string.IsNullOrEmpty(section.EmbedUrl) is false)
+                    {
+                        <DeferredEmbed Src="@GetEmbedUrl(section.EmbedUrl)" Title="@section.Title"
+                                       Description="@GetEmbedDescription(section.EmbedUrl)"
+                                       Height="60vh"
+                                       Icon="@GetEmbedIcon(section.EmbedUrl)"
+                                       ActionText="@GetEmbedActionText(section.EmbedUrl)"
+                                       ActionIcon="@GetEmbedIcon(section.EmbedUrl)"
+                                       OpenUrl="@GetEmbedOpenUrl(section.EmbedUrl)"/>
+                    }
+                </MudPaper>
+            }
+        }
+    </MudContainer>
+}
