@@ -4,12 +4,62 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>PersonalPortfolio</title>
+    <title>Andrick Mercado — Software Engineer</title>
     <base href="/"/>
+
+    <!-- Per-page meta descriptions, canonical links, and Open Graph tags are rendered by the
+         page components via HeadContent (see SeoConstants); react-snap bakes them into the
+         prerendered HTML. Only site-wide tags that never vary per page live here. -->
+    <meta name="author" content="Andrick Mercado"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="theme-color" content="#1b5e20"/>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet"/>
+
+    <!-- Structured data: tells search engines who the site is about and what it is. -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Person",
+                "@id": "https://andrick-mercado.github.io/#person",
+                "name": "Andrick Mercado",
+                "url": "https://andrick-mercado.github.io/",
+                "image": "https://andrick-mercado.github.io/images/headshot_01.webp",
+                "email": "mailto:andrickmercado17@gmail.com",
+                "jobTitle": "Software Engineer",
+                "worksFor": {
+                    "@type": "Organization",
+                    "name": "Helix Electric"
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "San Diego",
+                    "addressRegion": "CA",
+                    "addressCountry": "US"
+                },
+                "knowsAbout": [ "C#", ".NET", "ASP.NET Core", "Blazor", "Azure Functions", "Cosmos DB", "Unity" ],
+                "sameAs": [
+                    "https://github.com/Andrick-Mercado",
+                    "https://www.linkedin.com/in/andrick-mercado"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://andrick-mercado.github.io/#website",
+                "url": "https://andrick-mercado.github.io/",
+                "name": "Andrick Mercado — Software Engineer",
+                "description": "Portfolio of Andrick Mercado, a software engineer in San Diego specializing in C# and .NET, building web applications, backend services, and games.",
+                "author": { "@id": "https://andrick-mercado.github.io/#person" }
+            }
+        ]
+    }
+    </script>
 
     <!-- Every page waits on this file, but it is only discoverable after the WebAssembly
          runtime has booted, so fetch it in parallel with the framework download instead. -->
