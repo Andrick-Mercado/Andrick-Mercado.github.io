@@ -1,6 +1,18 @@
 {
   "reactSnap": {
     "source": "output/wwwroot",
+    "include": [
+      "/",
+      "/card/experience",
+      "/card/education",
+      "/card/projects",
+      "/card/projects/mcp-builder",
+      "/card/projects/portfolio-website",
+      "/card/projects/pestilence-game",
+      "/card/projects/safe-routes-to-school-vr-app",
+      "/card/projects/spacecraft-game",
+      "/card/projects/traversial-game"
+    ],
     "minifyHtml": {
       "collapseWhitespace": true,
       "removeComments": true

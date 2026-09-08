@@ -2,7 +2,25 @@
 @using PersonalPortfolio.Library.Domain.Mappers
 @using PersonalPortfolio.Library.Infrastructure.Extensions
 
-<PageTitle>@(_project?.Title ?? Slug.FirstCharToUpper())</PageTitle>
+<PageTitle>@PageTitleText</PageTitle>
+
+@* Canonical, description, and Open Graph tags are per-page; react-snap bakes them into the
+   prerendered snapshot so crawlers and link previews see them without running the app. *@
+<HeadContent>
+    <meta name="description" content="@PageDescription"/>
+    <link rel="canonical" href="@SeoConstants.Canonical(RouteMapper.GetProjectDetailRoute(PageEndpoint, Slug))"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:site_name" content="@SeoConstants.SiteName"/>
+    <meta property="og:title" content="@PageTitleText"/>
+    <meta property="og:description" content="@PageDescription"/>
+    <meta property="og:url" content="@SeoConstants.Canonical(RouteMapper.GetProjectDetailRoute(PageEndpoint, Slug))"/>
+    <meta property="og:image" content="@PageImage"/>
+    <meta property="og:image:alt" content="@(_project?.Title ?? PageTitleText)"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="@PageTitleText"/>
+    <meta name="twitter:description" content="@PageDescription"/>
+    <meta name="twitter:image" content="@PageImage"/>
+</HeadContent>
 
 @if (_hasLoaded is false)
 {

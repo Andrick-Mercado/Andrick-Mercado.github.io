@@ -47,6 +47,14 @@ PortfolioV2/
 - `Blazored.LocalStorage`
 - `react-snap` via `npx` for prerendering
 
+## SEO notes
+
+- `wwwroot/robots.txt` and `wwwroot/sitemap.xml` list all crawlable routes.
+- `index.html` holds site-wide meta tags and JSON-LD (`Person` + `WebSite`).
+- Each page component sets its own title, meta description, canonical link, and Open Graph/Twitter tags via `HeadContent`; react-snap bakes them into the prerendered HTML.
+- Shared URL/description helpers: `PersonalPortfolio.Library/Domain/SeoConstants.cs` and `MiExtensions.ToMetaDescription`.
+- The `reactSnap.include` array in `prerender/package.json` must stay in sync with `sitemap.xml` whenever `websiteData.json` adds or removes an `otherPages` endpoint or a card `slug`.
+
 ## Build / run notes
 
 Typical local run command:

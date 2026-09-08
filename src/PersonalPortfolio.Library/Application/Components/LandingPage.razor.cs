@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using PersonalPortfolio.Library.Domain;
 using PersonalPortfolio.Library.Domain.Mappers;
 using PersonalPortfolio.Library.Infrastructure;
+using PersonalPortfolio.Library.Infrastructure.Extensions;
 
 namespace PersonalPortfolio.Library.Application.Components;
 
@@ -14,6 +15,14 @@ public partial class LandingPage
     private string _resumeUrl;
     private string _resumeTarget;
     private WebsiteData _websiteDatabaseData;
+
+    private string PageTitleText =>
+        $"{_personalInformation?.Person.FullName ?? SeoConstants.SiteName} — Software Engineer";
+
+    private string PageDescription =>
+        $"Portfolio of {_personalInformation?.Person.FullName ?? SeoConstants.SiteName} — {_mainPage?.Tagline} {_mainPage?.Location}."
+            .ToMetaDescription();
+
     [Inject] private IWebsiteRepo WebsiteRepo { get; set; } = default!;
 
     protected override async Task OnInitializedAsync()

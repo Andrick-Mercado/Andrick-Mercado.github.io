@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using PersonalPortfolio.Library.Domain;
 using PersonalPortfolio.Library.Infrastructure;
+using PersonalPortfolio.Library.Infrastructure.Extensions;
 
 namespace PersonalPortfolio.Library.Application.Components;
 
@@ -14,6 +15,16 @@ public partial class ProjectDetailPage
     [Parameter] public string PageEndpoint { get; set; } = default!;
     [Parameter] public string Slug { get; set; } = default!;
     [Inject] private IWebsiteRepo WebsiteRepo { get; set; } = default!;
+
+    private string PageTitleText =>
+        $"{_project?.Title ?? Slug.FirstCharToUpper()} — {SeoConstants.SiteName}";
+
+    private string PageDescription =>
+        (_project?.Body ?? string.Empty).ToMetaDescription() is { Length: > 0 } body
+            ? body
+            : $"{_project?.Title ?? Slug.FirstCharToUpper()} — a project by {SeoConstants.SiteName}.";
+
+    private string PageImage => SeoConstants.AbsoluteImage(_project?.ImageUrl);
 
     protected override async Task OnParametersSetAsync()
     {

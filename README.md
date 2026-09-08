@@ -130,7 +130,10 @@ Most content changes do not require touching Razor markup:
 1. Edit `src/PersonalPortfolio.Blazor/wwwroot/database/websiteData.json`.
 2. Add or replace any accompanying images under `tools/media/` and the app's `wwwroot` assets.
 3. Run the site locally to confirm the new content renders correctly.
-4. Commit and push to `main`; the deployment workflow handles the rest.
+4. If you added or removed a page (`otherPages` endpoint) or a card with a `slug`, update the route lists in `src/PersonalPortfolio.Blazor/wwwroot/sitemap.xml` and the `reactSnap.include` array in `prerender/package.json` so crawlers and the prerender step see the new routes.
+5. Commit and push to `main`; the deployment workflow handles the rest.
+
+SEO infrastructure: `wwwroot/robots.txt` and `wwwroot/sitemap.xml` guide crawlers, `index.html` carries the site-wide JSON-LD structured data, and each page component renders its own title, meta description, canonical link, and Open Graph tags through `HeadContent`, with shared URL helpers in `PersonalPortfolio.Library/Domain/SeoConstants.cs`.
 
 The `websiteData.json` file is marked `CopyToOutputDirectory=PreserveNewest`, so edits are picked up on the next build without a clean.
 

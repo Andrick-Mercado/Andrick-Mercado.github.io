@@ -1,8 +1,27 @@
-﻿@using PersonalPortfolio.Library.Domain.Mappers
+﻿@using PersonalPortfolio.Library.Domain
+@using PersonalPortfolio.Library.Domain.Mappers
 
 @if (_hasLoaded)
 {
-    <PageTitle>@_mainPage?.Title</PageTitle>
+    <PageTitle>@PageTitleText</PageTitle>
+
+    @* Canonical, description, and Open Graph tags are per-page; react-snap bakes them into the
+       prerendered snapshot so crawlers and link previews see them without running the app. *@
+    <HeadContent>
+        <meta name="description" content="@PageDescription"/>
+        <link rel="canonical" href="@SeoConstants.Canonical(null)"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:site_name" content="@SeoConstants.SiteName"/>
+        <meta property="og:title" content="@PageTitleText"/>
+        <meta property="og:description" content="@PageDescription"/>
+        <meta property="og:url" content="@SeoConstants.Canonical(null)"/>
+        <meta property="og:image" content="@SeoConstants.DefaultImage"/>
+        <meta property="og:image:alt" content="Headshot of Andrick Mercado"/>
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="@PageTitleText"/>
+        <meta name="twitter:description" content="@PageDescription"/>
+        <meta name="twitter:image" content="@SeoConstants.DefaultImage"/>
+    </HeadContent>
 
     <MudContainer MaxWidth="MaxWidth.Medium">
 

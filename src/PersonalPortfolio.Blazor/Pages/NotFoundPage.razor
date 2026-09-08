@@ -1,6 +1,11 @@
 ﻿@page "/not-found"
 @layout PersonalPortfolio.Library.Application.Components.MainLayoutPage
 
-<PageTitle>Not found</PageTitle>
+<PageTitle>Not found — Andrick Mercado</PageTitle>
+
+@* Unknown URLs should not appear in search results. *@
+<HeadContent>
+    <meta name="robots" content="noindex"/>
+</HeadContent>
 
 <p role="alert">Sorry, there's nothing at this address.</p>

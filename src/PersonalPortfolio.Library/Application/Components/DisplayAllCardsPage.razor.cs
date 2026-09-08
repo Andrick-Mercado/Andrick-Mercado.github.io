@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using PersonalPortfolio.Library.Domain;
 using PersonalPortfolio.Library.Infrastructure;
+using PersonalPortfolio.Library.Infrastructure.Extensions;
 
 namespace PersonalPortfolio.Library.Application.Components;
 
@@ -16,6 +17,13 @@ public partial class DisplayAllCardsPage
 
     [Parameter] public string ClientRouteName { get; set; } = default!;
     [Inject] private IWebsiteRepo WebsiteRepo { get; set; } = default!;
+
+    private string PageTitleText =>
+        $"{_currentPage?.Title ?? ClientRouteName.FirstCharToUpper()} — {SeoConstants.SiteName}";
+
+    private string PageDescription =>
+        $"{_currentPage?.Title ?? ClientRouteName.FirstCharToUpper()} — portfolio of {SeoConstants.SiteName}, software engineer in San Diego, CA."
+            .ToMetaDescription();
 
     protected override async Task OnInitializedAsync()
     {
