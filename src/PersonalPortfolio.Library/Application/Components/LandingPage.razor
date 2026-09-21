@@ -63,6 +63,11 @@
                         <MudButton Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Custom.Brands.LinkedIn"
                                    Href="@UriMapper.GetLinkedInUri(_personalInformation.SocialMediaLinks.LinkedIn)" Target="_blank">LinkedIn</MudButton>
                     }
+                    @if (string.IsNullOrEmpty(_personalInformation?.SocialMediaLinks.Itch) is false)
+                    {
+                        <MudButton Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Material.Filled.SportsEsports"
+                                   Href="@_personalInformation.SocialMediaLinks.Itch" Target="_blank">itch.io</MudButton>
+                    }
                     @if (string.IsNullOrEmpty(_personalInformation?.SocialMediaLinks.Mail) is false)
                     {
                         <MudButton Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Email"

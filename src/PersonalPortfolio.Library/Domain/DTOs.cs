@@ -36,6 +36,7 @@ public class SocialMediaLinks
     public string Mail { get; set; }
     public string Twitter { get; set; }
     public string Github { get; set; }
+    public string Itch { get; set; }
 }
 
 public class WebsiteData
