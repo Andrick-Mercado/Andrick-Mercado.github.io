@@ -1,0 +1,82 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    name: Build and Publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj', 'global.json') }}
+          restore-keys: |
+            nuget-${{ runner.os }}-
+
+      - name: Restore workloads
+        run: dotnet workload restore
+
+      - name: Publish
+        run: dotnet publish src/PersonalPortfolio.Blazor/PersonalPortfolio.Blazor.csproj -c Release -o prerender/output --nologo
+
+      - name: Upload publish artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-site
+          path: prerender/output
+          retention-days: 1
+
+  prerender-and-deploy:
+    name: Prerender and Deploy
+    needs: build-and-publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Download publish artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: published-site
+          path: prerender/output
+
+      - name: Setup Chrome
+        id: chrome
+        uses: browser-actions/setup-chrome@v2
+        with:
+          chrome-version: stable
+
+      - name: Prerender Blazor client
+        working-directory: prerender
+        env:
+          PUPPETEER_EXECUTABLE_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: npx react-snap
+
+      - name: Add .nojekyll file
+        run: touch prerender/output/wwwroot/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: deployment-branch
+          folder: prerender/output/wwwroot
