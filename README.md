@@ -7,13 +7,13 @@ A personal portfolio and interactive resume website built with .NET 10 Blazor We
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/)
 [![MudBlazor](https://img.shields.io/badge/MudBlazor-9.7.0-594AE2)](https://mudblazor.com/)
 
-Live site: [andrick-mercado.github.io](https://andrick-mercado.github.io/)
+Live site: [andrick-mercado.dev](https://andrick-mercado.dev/)
 
 ## Overview
 
 This repository is the source for my personal portfolio site. It is a single-page Blazor WebAssembly application that renders resume and portfolio content from a JSON data file, styled with the MudBlazor component library, and prerendered to static HTML so that the published pages load fast and are crawlable by search engines and link previews.
 
-Because the repository is named `Andrick-Mercado.github.io`, GitHub Pages serves it as a user site at the root domain rather than under a project subpath.
+Because the repository is named `Andrick-Mercado.github.io`, GitHub Pages serves it as a user site. It is published at the custom domain [andrick-mercado.dev](https://andrick-mercado.dev/) (with the original `andrick-mercado.github.io` address still available as a fallback).
 
 ## Features
 
