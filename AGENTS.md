@@ -17,6 +17,7 @@
 PortfolioV2/
 ├── PersonalPortfolio.sln
 ├── README.md
+├── global.json                    # Pins .NET 10 SDK (rollForward: latestFeature)
 ├── .github/
 │   └── workflows/
 │       └── deploy-blazor-wasm-to-github-pages.yml
@@ -75,9 +76,11 @@ dotnet publish src/PersonalPortfolio.Blazor/PersonalPortfolio.Blazor.csproj -c R
 
 GitHub Actions deploys from `main` to GitHub Pages using:
 
-- `.NET 10.0.x`
-- `wasm-tools`
+- `.NET 10.0.x` (pinned via `global.json` with `rollForward: latestFeature`)
+- Workloads restored automatically with `dotnet workload restore`
 - Blazor publish output
 - `react-snap` prerendering
 - `JamesIves/github-pages-deploy-action@v4`
 - Deployment branch: `deployment-branch`
+
+When upgrading to a new major .NET version, update `dotnet-version` in the workflow and the `version` field in `global.json`. Workload restore handles the rest.
