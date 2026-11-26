@@ -1,8 +1,10 @@
 name: Deploy Web App to GitHub Pages
 
-# Run workflow on every push to the master branch
+# Run workflow on pushes to main and on all pull requests targeting main
 on:
   push:
+    branches: [ main ]
+  pull_request:
     branches: [ main ]
 
 jobs:
@@ -58,7 +60,9 @@ jobs:
       - name: Add .nojekyll file
         run: touch prerender/output/wwwroot/.nojekyll
 
+      # Only deploy when the workflow is triggered by a push to main (not on pull requests)
       - name: Commit wwwroot to GitHub Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
