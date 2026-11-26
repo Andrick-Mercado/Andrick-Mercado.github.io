@@ -19,9 +19,9 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
-      # Install wasm-tools
-      - name: Install wasm-tools
-        run: dotnet workload install wasm-tools
+      # Restore workloads (reads project requirements automatically)
+      - name: Restore workloads
+        run: dotnet workload restore
 
       # publishes Blazor project to the prerender/output folder
       - name: Publish .NET Core Project
