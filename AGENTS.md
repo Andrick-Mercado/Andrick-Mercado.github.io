@@ -20,7 +20,8 @@ PortfolioV2/
 ├── global.json                    # Pins .NET 10 SDK (rollForward: latestFeature)
 ├── .github/
 │   └── workflows/
-│       └── deploy-blazor-wasm-to-github-pages.yml
+│       ├── ci.yml                    # PR CI: build + publish
+│       └── deploy.yml                # Deploy on push to main
 ├── prerender/
 │   └── package.json
 └── src/
@@ -72,15 +73,16 @@ dotnet publish src/PersonalPortfolio.Blazor/PersonalPortfolio.Blazor.csproj -c R
 ```
 
 
-## Deployment
+## CI/CD
 
-GitHub Actions deploys from `main` to GitHub Pages using:
+Two workflows:
 
+- **`.github/workflows/ci.yml`** — Runs on pull requests to `main`. Builds and publishes the Blazor project. Provides fast feedback without prerendering or deploying.
+- **`.github/workflows/deploy.yml`** — Runs on push to `main`. Builds, publishes, prerenders with react-snap, and deploys to the `deployment-branch`.
+
+Both use:
 - `.NET 10.0.x` (pinned via `global.json` with `rollForward: latestFeature`)
 - Workloads restored automatically with `dotnet workload restore`
-- Blazor publish output
-- `react-snap` prerendering
-- `JamesIves/github-pages-deploy-action@v4`
-- Deployment branch: `deployment-branch`
+- NuGet caching
 
-When upgrading to a new major .NET version, update `dotnet-version` in the workflow and the `version` field in `global.json`. Workload restore handles the rest.
+When upgrading to a new major .NET version, update `dotnet-version` in both workflows and the `version` field in `global.json`. Workload restore handles the rest.
