@@ -2,10 +2,11 @@
 
 A personal portfolio and interactive resume website built with .NET 10 Blazor WebAssembly, MudBlazor, and a react-snap prerendering step, deployed automatically to GitHub Pages.
 
-[![Deploy Web App to GitHub Pages](https://github.com/Andrick-Mercado/Andrick-Mercado.github.io/actions/workflows/deploy-blazor-wasm-to-github-pages.yml/badge.svg)](https://github.com/Andrick-Mercado/Andrick-Mercado.github.io/actions/workflows/deploy-blazor-wasm-to-github-pages.yml)
+[![CI](https://github.com/Andrick-Mercado/Andrick-Mercado.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/Andrick-Mercado/Andrick-Mercado.github.io/actions/workflows/ci.yml)
+[![Deploy](https://github.com/Andrick-Mercado/Andrick-Mercado.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/Andrick-Mercado/Andrick-Mercado.github.io/actions/workflows/deploy.yml)
 [![GitHub issues](https://img.shields.io/github/issues/Andrick-Mercado/Andrick-Mercado.github.io)](https://github.com/Andrick-Mercado/Andrick-Mercado.github.io/issues)
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/)
-[![MudBlazor](https://img.shields.io/badge/MudBlazor-9.7.0-594AE2)](https://mudblazor.com/)
+[![MudBlazor](https://img.shields.io/badge/MudBlazor-9.14.0-594AE2)](https://mudblazor.com/)
 
 Live site: [andrick-mercado.dev](https://andrick-mercado.dev/)
 
@@ -31,7 +32,7 @@ Because the repository is named `Andrick-Mercado.github.io`, GitHub Pages serves
 | --- | --- |
 | Framework | .NET 10 / Blazor WebAssembly |
 | Language | C# 14 |
-| UI components | MudBlazor 9.7.0 |
+| UI components | MudBlazor 9.14.0 |
 | Client storage | Blazored.LocalStorage 4.5.0 |
 | Prerendering | react-snap via `npx` (Puppeteer + Chrome stable) |
 | CI/CD | GitHub Actions |
@@ -47,7 +48,8 @@ Andrick-Mercado.github.io/
 ├── global.json                    # Pins the .NET SDK feature band for CI and local builds
 ├── .github/
 │   └── workflows/
-│       └── deploy-blazor-wasm-to-github-pages.yml
+│       ├── ci.yml                    # Pull request CI (build + publish)
+│       └── deploy.yml                # Deploy on push to main
 ├── prerender/
 │   └── package.json               # react-snap configuration
 ├── tools/
@@ -138,25 +140,36 @@ SEO infrastructure: `wwwroot/robots.txt` and `wwwroot/sitemap.xml` guide crawler
 
 The `websiteData.json` file is marked `CopyToOutputDirectory=PreserveNewest`, so edits are picked up on the next build without a clean.
 
-## Deployment
+## CI/CD
 
-Deployment is fully automated by `.github/workflows/deploy-blazor-wasm-to-github-pages.yml`, which runs on every push to `main`:
+Two workflows handle continuous integration and deployment:
 
-1. Check out the repository.
-2. Set up the .NET 10.0.x SDK (pinned by `global.json` with `rollForward: latestFeature`) and restore workloads automatically via `dotnet workload restore`.
-3. Publish the Blazor project in `Release` to `prerender/output`.
-4. Install Chrome stable and expose it to Puppeteer through `PUPPETEER_EXECUTABLE_PATH`, avoiding stale bundled Chromium.
-5. Prerender the published client with `npx react-snap`.
-6. Add a `.nojekyll` file so GitHub Pages serves the underscore-prefixed `_framework` assets that Blazor requires.
-7. Publish `prerender/output/wwwroot` to the `deployment-branch` using [`JamesIves/github-pages-deploy-action@v4`](https://github.com/JamesIves/github-pages-deploy-action).
+### CI (`.github/workflows/ci.yml`)
+Runs on every pull request targeting `main`:
+1. Check out the code.
+2. Set up the .NET 10.0.x SDK (pinned by `global.json`).
+3. Cache and restore NuGet packages.
+4. Restore workloads with `dotnet workload restore`.
+5. Build and publish the Blazor project in Release configuration.
+
+This provides fast feedback on PRs without running the full prerender/deploy path.
+
+### Deploy (`.github/workflows/deploy.yml`)
+Runs on every push to `main`:
+1. Build and publish the Blazor project (same steps as CI).
+2. Upload the publish output as an artifact.
+3. Download the artifact in a second job.
+4. Install Chrome stable and prerender with `react-snap`.
+5. Add a `.nojekyll` file.
+6. Deploy `wwwroot` to the `deployment-branch` using [`JamesIves/github-pages-deploy-action@v4`](https://github.com/JamesIves/github-pages-deploy-action).
 
 GitHub Pages for this repository should be configured to serve from the `deployment-branch` branch at the root path.
 
-When upgrading to a new major .NET version, only two lines need to change: `dotnet-version` in the workflow and the `version` field in `global.json`. Workload restore handles the rest.
+When upgrading to a new major .NET version, only two lines need to change: `dotnet-version` in both workflows and the `version` field in `global.json`. Workload restore handles the rest.
 
 ### A note on the base tag
 
-The workflow contains commented-out steps that rewrite the `<base href>` to a repository subfolder. Those steps are intentionally disabled: as a user site served from the root domain, the default `<base href="/">` is correct. Re-enable them only if this code is ever deployed as a project site under a subpath such as `/PortfolioV2/`.
+The default `<base href="/">` is correct for this user site served from the root domain. Re-enable any base-tag rewriting only if this code is ever deployed as a project site under a subpath.
 
 ## Troubleshooting
 
