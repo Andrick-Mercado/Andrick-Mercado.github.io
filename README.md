@@ -44,6 +44,7 @@ Andrick-Mercado.github.io/
 ├── PersonalPortfolio.sln
 ├── AGENTS.md                      # Project context for AI coding agents
 ├── README.md
+├── global.json                    # Pins the .NET SDK feature band for CI and local builds
 ├── .github/
 │   └── workflows/
 │       └── deploy-blazor-wasm-to-github-pages.yml
@@ -86,7 +87,7 @@ Andrick-Mercado.github.io/
 Install the WebAssembly workload once per machine:
 
 ```bash
-dotnet workload install wasm-tools
+dotnet workload restore
 ```
 
 ### Clone and run
@@ -142,7 +143,7 @@ The `websiteData.json` file is marked `CopyToOutputDirectory=PreserveNewest`, so
 Deployment is fully automated by `.github/workflows/deploy-blazor-wasm-to-github-pages.yml`, which runs on every push to `main`:
 
 1. Check out the repository.
-2. Set up the .NET 10.0.x SDK and install the `wasm-tools` workload.
+2. Set up the .NET 10.0.x SDK (pinned by `global.json` with `rollForward: latestFeature`) and restore workloads automatically via `dotnet workload restore`.
 3. Publish the Blazor project in `Release` to `prerender/output`.
 4. Install Chrome stable and expose it to Puppeteer through `PUPPETEER_EXECUTABLE_PATH`, avoiding stale bundled Chromium.
 5. Prerender the published client with `npx react-snap`.
@@ -150,6 +151,8 @@ Deployment is fully automated by `.github/workflows/deploy-blazor-wasm-to-github
 7. Publish `prerender/output/wwwroot` to the `deployment-branch` using [`JamesIves/github-pages-deploy-action@v4`](https://github.com/JamesIves/github-pages-deploy-action).
 
 GitHub Pages for this repository should be configured to serve from the `deployment-branch` branch at the root path.
+
+When upgrading to a new major .NET version, only two lines need to change: `dotnet-version` in the workflow and the `version` field in `global.json`. Workload restore handles the rest.
 
 ### A note on the base tag
 
@@ -160,7 +163,7 @@ The workflow contains commented-out steps that rewrite the `<base href>` to a re
 * **Blank page after deploy, 404s on `_framework` files.** The `.nojekyll` file is missing from the published output, or Pages is pointed at the wrong branch.
 * **Prerender step hangs or crashes.** Usually a Chrome/Puppeteer mismatch. Set `PUPPETEER_EXECUTABLE_PATH` to a modern Chrome binary.
 * **Assets resolve to the wrong path.** Check that `<base href>` matches how the site is served, root for a user site, `/<repo>/` for a project site.
-* **`wasm-tools` workload errors on publish.** Run `dotnet workload install wasm-tools` and confirm the installed SDK is 10.0.x with `dotnet --info`.
+* **`wasm-tools` workload errors on publish.** Run `dotnet workload restore` and confirm the installed SDK is 10.0.x with `dotnet --info`.
 
 ## AI agent context
 
